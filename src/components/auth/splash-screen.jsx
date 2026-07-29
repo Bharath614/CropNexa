@@ -6,21 +6,31 @@ import { getTranslation } from '@/utils/i18n';
 export const SplashScreen = ({ onComplete, language = 'en' }) => {
     const [secondsLeft, setSecondsLeft] = useState(4);
     const videoRef = useRef(null);
+    const onCompleteRef = useRef(onComplete);
+    onCompleteRef.current = onComplete;
+
     const t = (key) => getTranslation(language, key);
 
     useEffect(() => {
-        if (secondsLeft <= 0) {
-            onComplete();
-            return;
-        }
-        const timer = setTimeout(() => {
-            setSecondsLeft((prev) => prev - 1);
+        const timer = setInterval(() => {
+            setSecondsLeft((prev) => {
+                if (prev <= 1) {
+                    clearInterval(timer);
+                    if (onCompleteRef.current) {
+                        onCompleteRef.current();
+                    }
+                    return 0;
+                }
+                return prev - 1;
+            });
         }, 1000);
-        return () => clearTimeout(timer);
-    }, [secondsLeft, onComplete]);
+        return () => clearInterval(timer);
+    }, []);
 
     const handleVideoEnded = () => {
-        onComplete();
+        if (onCompleteRef.current) {
+            onCompleteRef.current();
+        }
     };
 
     return (
