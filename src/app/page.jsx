@@ -40,7 +40,7 @@ export default function Home() {
     }, [isAuthenticated, setAuthScreen]);
     // Auth Screen Router
     if (authScreen === 'splash') {
-        return (<SplashScreen onComplete={() => setAuthScreen(isAuthenticated ? 'app' : 'login')} language={currentLanguage}/>);
+        return (<SplashScreen onComplete={() => setAuthScreen('login')} language={currentLanguage}/>);
     }
     if (authScreen === 'login') {
         return (<LoginPage onLoginSubmit={(id, pass, rem) => loginUser(id, pass, rem)} onGoToRegister={() => setAuthScreen('register')} onResetPassword={resetUserPassword} currentLanguage={currentLanguage} onLanguageChange={setLanguage}/>);
