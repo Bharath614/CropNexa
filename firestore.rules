@@ -1,0 +1,33 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Reference data: readable by any signed-in user, writable only via
+    // the Admin SDK (i.e. your seed script / backend), never from the client.
+    match /crops/{cropId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /companions/{companionId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /avoidPairs/{avoidId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /nutrientRules/{ruleId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // User-owned data: each user can only read/write their own profile doc.
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
