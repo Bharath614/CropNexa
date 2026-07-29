@@ -39,18 +39,13 @@ export default function RootLayout({ children, }) {
         {/* Service Worker Registration */}
         <script dangerouslySetInnerHTML={{
             __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(
-                    function(registration) {
-                      console.log('PWA ServiceWorker registered with scope: ', registration.scope);
-                    },
-                    function(err) {
-                      console.log('PWA ServiceWorker registration failed: ', err);
-                    }
-                  );
-                });
-              }
+              try {
+                if (typeof window !== 'undefined' && 'serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+                  window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').catch(function(e) { console.log('SW notice:', e); });
+                  });
+                }
+              } catch(e) {}
             `
         }}/>
       </body>
