@@ -7,7 +7,7 @@ import { parseSoilReportFile } from '@/utils/soil-ocr-parser';
 import { useTranslation } from 'react-i18next';
 import { UploadCloud, CheckCircle2, Lightbulb, Sparkles, Trash2, RefreshCw, Edit3, Save, Sprout, Dna, Layers } from 'lucide-react';
 export const Soil = () => {
-    const { soilReport, soilScore, soilStatus, soilEvaluation, updateSoilReport, profile, showToast, currentLanguage, currentUser, dispatchAdminEvent } = useFarm();
+    const { soilReport, soilScore, soilStatus, soilEvaluation, updateSoilReport, profile, showToast, currentUser, dispatchAdminEvent } = useFarm();
     const fileInputRef = useRef(null);
     const { t } = useTranslation();
     // File upload state

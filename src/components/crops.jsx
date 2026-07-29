@@ -1,10 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { MASTER_CROPS, getEngineRecommendations } from '@/utils/companion-engine';
 import { ArrowLeft, Star, CheckCircle2, AlertTriangle, Droplet, Sun, Thermometer, Cloud, ChevronRight, Search } from 'lucide-react';
 export const Crops = () => {
-    const { t } = useTranslation();
     const [selectedCrop, setSelectedCrop] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');

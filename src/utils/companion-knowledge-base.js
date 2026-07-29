@@ -600,6 +600,9 @@ export function calculate10FactorCompatibility(targetCrop, companionName, baseSc
         nutrientScore = 92;
         score += 3;
     }
+    if (farmingMode && farmingMode.toLowerCase().includes('organic') && isLegume) {
+        score += 3;
+    }
     let rootScore = 88;
     if (cName.includes('basil') || cName.includes('marigold') || cName.includes('onion')) {
         rootScore = 96;

@@ -23,7 +23,7 @@ import { ResetPasswordPage } from '@/components/auth/reset-password-page';
 import { EmailSmsPreviewModal } from '@/components/auth/email-sms-preview-modal';
 import { ToastContainer } from '@/components/ui/toast';
 import { SUPPORTED_LANGUAGES } from '@/utils/i18n';
-import { Sprout, BadgeAlert, AlertTriangle, X, ShieldAlert, LogOut, Globe, Bell, Sun, Moon, Maximize2 } from 'lucide-react';
+import { BadgeAlert, AlertTriangle, X, ShieldAlert, LogOut, Globe, Bell, Sun, Moon, Maximize2 } from 'lucide-react';
 export default function Home() {
     const { authScreen, setAuthScreen, isAuthenticated, loginUser, registerUser, logoutUser, registeredUsers, activeTab, setActiveTab, profile, alerts, toasts, removeToast, currentLanguage, setLanguage, notifications, dispatchedOutbound, isOutboundModalOpen, setIsOutboundModalOpen, verifyUserEmail, resetUserPassword, theme, toggleTheme, appSize, setAppSize } = useFarm();
     const [isAlertsModalOpen, setIsAlertsModalOpen] = useState(false);
@@ -128,7 +128,7 @@ export default function Home() {
             
             {/* Status pill */}
             <div className="hidden md:flex items-center gap-1.5 bg-emerald-950/60 border border-emerald-900/50 px-3 py-1 rounded-full text-[10px] text-emerald-400 font-bold">
-              <Sprout className="h-3.5 w-3.5"/>
+              <img src="/logo.png" alt="CropNexa Logo" className="h-3.5 w-3.5 rounded-full object-cover" />
               <span>Active: {profile.currentCrop} ({profile.currentStage})</span>
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function Home() {
         </div>)}
 
       {/* Global Outbound Email / SMS Dispatch Simulator Modal */}
-      {isOutboundModalOpen && (<EmailSmsPreviewModal notifications={dispatchedOutbound} onClose={() => setIsOutboundModalOpen(false)} onVerifyEmailAction={(email) => verifyUserEmail(email)} onResetPasswordAction={(email) => {
+      {isOutboundModalOpen && (<EmailSmsPreviewModal notifications={dispatchedOutbound} onClose={() => setIsOutboundModalOpen(false)} onVerifyEmailAction={(targetEmail) => verifyUserEmail(targetEmail)} onResetPasswordAction={() => {
                 setIsOutboundModalOpen(false);
                 setAuthScreen('login');
             }}/>)}

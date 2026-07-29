@@ -191,13 +191,14 @@ export function getEngineRecommendations(targetCropName, stage = 'Growth', mode 
                             const stageSuitability = (stage === 'Germination' && (itemLower.includes('brassica') || itemLower.includes('radish')))
                                 ? 'Caution at Germination'
                                 : 'Suitable';
+                            const isOrganicMode = (mode || '').toLowerCase().includes('organic');
                             companionList.push({
                                 cropName: item,
                                 mechanism: comp.mechanism,
                                 source: comp.source,
                                 confidence: comp.confidence,
                                 stageSuitability,
-                                mechanismTag: mechTag
+                                mechanismTag: comp.confidence === 'High' && isOrganicMode ? 'Organic Certified' : mechTag
                             });
                         }
                     }

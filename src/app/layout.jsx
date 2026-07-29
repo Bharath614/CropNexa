@@ -4,6 +4,11 @@ export const metadata = {
     title: "CropNexa — Companion Planting Advisory",
     description: "Mobile-first companion planting advisory app for farmers with real-time weather & stage intelligence.",
     manifest: "/manifest.json",
+    icons: {
+        icon: "/favicon.ico",
+        shortcut: "/logo.png",
+        apple: "/apple-touch-icon.png",
+    },
     appleWebApp: {
         capable: true,
         statusBarStyle: "black-translucent",
@@ -22,7 +27,9 @@ export default function RootLayout({ children, }) {
     return (<html lang="en" className="h-full antialiased">
       <head>
         <link rel="manifest" href="/manifest.json"/>
-        <link rel="apple-touch-icon" href="/icons/icon-192.png"/>
+        <link rel="icon" href="/favicon.ico" sizes="any"/>
+        <link rel="icon" type="image/png" href="/logo.png"/>
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
       </head>

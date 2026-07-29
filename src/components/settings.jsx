@@ -2,9 +2,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFarm } from '@/context/farm-context';
-import { CROP_DATABASE } from '@/utils/crop-database';
 import { SUPPORTED_LANGUAGES } from '@/utils/i18n';
-import { Settings, Save, AlertCircle, CheckCircle2, User, Globe, MessageSquare, Server, ShieldCheck } from 'lucide-react';
+import { Settings, Save, AlertCircle, CheckCircle2, User, Globe, MessageSquare, Server, ShieldCheck, Sprout } from 'lucide-react';
 export const SettingsPanel = () => {
     const { profile, updateProfile, resetAllData, showToast, currentLanguage, setLanguage, currentUser, toggleSmsNotifications, theme, setTheme, appSize, setAppSize } = useFarm();
     const { t } = useTranslation();
@@ -89,7 +88,6 @@ export const SettingsPanel = () => {
         showToast('Settings & Gateway Saved', 'All farm records and notification gateways updated!', 'success');
         setTimeout(() => setSaveSuccess(false), 3000);
     };
-    const cropNames = Object.values(CROP_DATABASE).map(c => c.name);
     return (<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fadeIn items-start">
       <div className="lg:col-span-2 bg-slate-900/70 border border-emerald-950/50 rounded-3xl p-6 shadow-md space-y-6">
         <div className="border-b border-emerald-950/60 pb-4">
@@ -129,6 +127,75 @@ export const SettingsPanel = () => {
               <div>
                 <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Residential Address</label>
                 <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"/>
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Farm & Land Details */}
+          <div className="space-y-4 border-t border-slate-900 pt-4">
+            <h4 className="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center gap-1.5">
+              <Sprout className="h-4 w-4 text-emerald-400"/>
+              2. Farm & Land Specification
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Farm Name</label>
+                <input type="text" value={farmName} onChange={(e) => setFarmName(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"/>
+              </div>
+
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">GPS Location</label>
+                <input type="text" value={gpsLocation} onChange={(e) => setGpsLocation(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"/>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Village</label>
+                <input type="text" value={village} onChange={(e) => setVillage(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200"/>
+              </div>
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">District</label>
+                <input type="text" value={district} onChange={(e) => setDistrict(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200"/>
+              </div>
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">State</label>
+                <input type="text" value={state} onChange={(e) => setState(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200"/>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Total Land (Ha)</label>
+                <input type="number" step="0.1" value={totalLandArea} onChange={(e) => setTotalLandArea(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200"/>
+              </div>
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Irrigated Area (Ha)</label>
+                <input type="number" step="0.1" value={irrigatedArea} onChange={(e) => setIrrigatedArea(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200"/>
+              </div>
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Rainfed Area (Ha)</label>
+                <input type="number" step="0.1" value={rainfedArea} onChange={(e) => setRainfedArea(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200"/>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Soil Type</label>
+                <input type="text" value={soilType} onChange={(e) => setSoilType(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200"/>
+              </div>
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Current Crop</label>
+                <input type="text" value={currentCrop} onChange={(e) => setCurrentCrop(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200"/>
+              </div>
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Previous Crop</label>
+                <input type="text" value={previousCrop} onChange={(e) => setPreviousCrop(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200"/>
+              </div>
+              <div>
+                <label className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Planned Crop</label>
+                <input type="text" value={plannedCrop} onChange={(e) => setPlannedCrop(e.target.value)} className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200"/>
               </div>
             </div>
           </div>

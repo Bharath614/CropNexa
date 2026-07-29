@@ -1,5 +1,8 @@
-export function evaluateSoilHealth(report, _farmingMode = 'Organic Farming') {
+export function evaluateSoilHealth(report, farmingMode = 'Organic Farming') {
     let score = 0;
+    if (farmingMode && farmingMode.toLowerCase().includes('organic')) {
+        score += 1;
+    }
     // 1. pH (Max 15 pts) - Ideal: 6.0 - 7.5
     if (report.ph >= 6.2 && report.ph <= 7.3) {
         score += 15;

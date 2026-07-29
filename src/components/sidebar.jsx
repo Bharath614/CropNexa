@@ -28,8 +28,8 @@ export const Sidebar = () => {
     return (<>
       {/* Mobile Toggle Bar */}
       <div className="lg:hidden flex items-center justify-between bg-emerald-950 text-white p-4 border-b border-emerald-800 sticky top-0 z-50">
-        <div className="flex items-center gap-2">
-          <Sprout className="h-6 w-6 text-emerald-400 animate-pulse"/>
+        <div className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="CropNexa Logo" className="h-8 w-8 rounded-lg object-contain shadow-md border border-emerald-500/40" />
           <span className="font-bold text-lg tracking-wider text-emerald-300">CROP NEXA</span>
         </div>
         <button onClick={toggleSidebar} className="p-2 text-emerald-400 hover:text-white transition-colors focus:outline-none cursor-pointer">
@@ -48,8 +48,9 @@ export const Sidebar = () => {
         <div>
           <div className="p-5 border-b border-emerald-950/60 hidden lg:flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-tr from-emerald-600 to-teal-400 p-2 rounded-xl shadow-lg shadow-emerald-500/25">
-                <Sprout className="h-6 w-6 text-white"/>
+              <div className="relative group shrink-0">
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 opacity-50 blur-sm"/>
+                <img src="/logo.png" alt="CropNexa Logo" className="relative h-10 w-10 rounded-xl object-cover shadow-lg border border-emerald-400/40" />
               </div>
               <div>
                 <h1 className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">{t('appName')}</h1>

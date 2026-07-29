@@ -1,11 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useFarm } from '@/context/farm-context';
 import { MASTER_CROPS, getEngineRecommendations, getEngineNutrientGuidance } from '@/utils/companion-engine';
 import { Check, AlertTriangle, ChevronDown } from 'lucide-react';
 export const Companion = () => {
-    const { t } = useTranslation();
     const { profile, soilReport, showToast } = useFarm();
     // Engine State Inputs
     const [targetCrop, setTargetCrop] = useState(profile.currentCrop || 'Maize');

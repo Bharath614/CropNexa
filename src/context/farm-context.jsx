@@ -203,7 +203,6 @@ export const FarmProvider = ({ children }) => {
     };
     // Dispatch Admin Notification Event
     const dispatchAdminEvent = (category, event, description, user, status = 'info', details) => {
-        const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'cropnexa1@gmail.com';
         const d = new Date();
         const dateStr = d.toLocaleDateString(i18n.language === 'en' ? 'en-US' : i18n.language, { month: 'short', day: 'numeric', year: 'numeric' });
         const timeStr = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -235,7 +234,7 @@ export const FarmProvider = ({ children }) => {
         setDispatchedOutbound(prev => [newDisp, ...prev]);
     };
     // Generate calendar tasks
-    const generateCalendar = (prof, soil) => {
+    const generateCalendar = (prof) => {
         const today = new Date();
         const formatDate = (daysAhead) => {
             const d = new Date(today);
@@ -545,8 +544,6 @@ export const FarmProvider = ({ children }) => {
         }
         setRegisteredUsers(prev => [...prev, newUser]);
         // Step 2: Send Registration Success Email
-        const dateStr = new Date().toLocaleDateString(i18n.language === 'en' ? 'en-US' : i18n.language);
-        const timeStr = new Date().toLocaleTimeString();
         dispatchOutboundNotification('email', newUser.email, 'Verify Your Email Address — CropNexa', `Dear User,
 
 Thank you for choosing CropNexa. We are delighted to welcome you to our platform dedicated to empowering smarter and more efficient farming.

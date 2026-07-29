@@ -186,6 +186,19 @@ export const AdminDashboard = () => {
                 <input type="text" placeholder={t('searchPlaceholder')} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-9 pr-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-indigo-500 w-full sm:w-48"/>
               </div>
 
+              {/* Category Filter */}
+              <div className="relative">
+                <Filter className="h-3.5 w-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"/>
+                <select value={activeCategory} onChange={(e) => setActiveCategory(e.target.value)} className="pl-8 pr-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 focus:outline-none focus:border-indigo-500 appearance-none">
+                  <option value="All">All Categories</option>
+                  <option value="Soil Health">Soil Health</option>
+                  <option value="Weather">Weather</option>
+                  <option value="Companion Planning">Companion Planning</option>
+                  <option value="Nutrient Management">Nutrient Management</option>
+                  <option value="Authentication">Authentication</option>
+                </select>
+              </div>
+
               {/* Status Filter */}
               <div className="relative">
                 <Filter className="h-3.5 w-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"/>

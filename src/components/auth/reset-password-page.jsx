@@ -1,6 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { KeyRound, Eye, EyeOff, CheckCircle2, ShieldAlert, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useFarm } from '@/context/farm-context';
@@ -8,8 +7,19 @@ import { confirmFirebasePasswordReset } from '@/utils/firebase-auth';
 export const ResetPasswordPage = ({ initialEmail, initialOobCode, onSuccess, onCancel }) => {
     const { resetUserPassword, setAuthScreen, showToast } = useFarm();
     const { t } = useTranslation();
-    const [email, setEmail] = useState(initialEmail || '');
-    const [oobCode, setOobCode] = useState(initialOobCode || '');
+    const getInitialParam = (keys, fallback) => {
+        if (fallback) return fallback;
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            for (const key of keys) {
+                const val = params.get(key);
+                if (val) return val;
+            }
+        }
+        return '';
+    };
+    const [email] = useState(() => initialEmail || getInitialParam(['email', 'reset_email', 'user'], ''));
+    const [oobCode] = useState(() => initialOobCode || getInitialParam(['oobCode', 'code', 'token'], ''));
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [showNewPassword, setShowNewPassword] = useState(false);
@@ -17,18 +27,6 @@ export const ResetPasswordPage = ({ initialEmail, initialOobCode, onSuccess, onC
     const [errorMsg, setErrorMsg] = useState(null);
     const [successMsg, setSuccessMsg] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    // Extract params from URL query if available
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const params = new URLSearchParams(window.location.search);
-            const urlEmail = params.get('email') || params.get('reset_email') || params.get('user');
-            const urlCode = params.get('oobCode') || params.get('code') || params.get('token');
-            if (urlEmail && !email)
-                setEmail(urlEmail);
-            if (urlCode && !oobCode)
-                setOobCode(urlCode);
-        }
-    }, [email, oobCode]);
     const handleResetPasswordSave = async (e) => {
         e.preventDefault();
         setErrorMsg(null);

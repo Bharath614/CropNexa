@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Sprout, User, Mail, Lock, Eye, EyeOff, Globe, CheckCircle2, AlertCircle, ArrowLeft, ArrowRight, ShieldCheck, RefreshCw, Send } from 'lucide-react';
+import { User, Mail, Lock, Eye, EyeOff, Globe, CheckCircle2, AlertCircle, ArrowLeft, ArrowRight, ShieldCheck, RefreshCw, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { SUPPORTED_LANGUAGES } from '@/utils/i18n';
 import { useFarm } from '@/context/farm-context';
@@ -162,16 +162,16 @@ export const RegisterPage = ({ onRegisterSuccess, onGoToLogin, currentLanguage, 
             setEmailResendTimer(60);
         }
     };
-    return (<div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 sm:p-6 relative overflow-hidden py-10 text-base">
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"/>
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-teal-600/10 rounded-full blur-3xl"/>
+    return (<div className="min-h-screen w-full bg-slate-950 text-slate-100 flex items-center justify-center p-4 sm:p-8 relative overflow-hidden py-10 text-base">
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"/>
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-3xl pointer-events-none"/>
 
-      <div className="w-full max-w-2xl bg-slate-900/95 border border-emerald-950/70 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-md space-y-7 relative z-10 animate-fadeIn">
+      <div className="w-full max-w-3xl bg-slate-900/90 border border-emerald-950/80 rounded-3xl p-6 sm:p-12 shadow-2xl backdrop-blur-xl space-y-7 relative z-10 animate-fadeIn my-auto">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-emerald-950/60 pb-5">
           <div className="flex items-center gap-3.5">
-            <div className="h-12 w-12 bg-emerald-950 border border-emerald-800 text-emerald-400 rounded-2xl flex items-center justify-center shadow-inner shrink-0">
-              <Sprout className="h-7 w-7"/>
+            <div className="h-12 w-12 bg-emerald-950 border border-emerald-800/80 rounded-2xl flex items-center justify-center shadow-inner shrink-0 overflow-hidden p-1">
+              <img src="/logo.png" alt="CropNexa Logo" className="h-full w-full object-cover rounded-xl" />
             </div>
             <div>
               <h2 className="text-2xl font-black text-white tracking-tight">{t('appName')}</h2>

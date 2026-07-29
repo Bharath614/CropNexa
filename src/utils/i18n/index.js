@@ -58,6 +58,7 @@ export const TRANSLATIONS = {
         authSecondaryCrop: 'Secondary Crop / Companion',
         authRememberMe: 'Remember Me',
         authForgotPassword: 'Forgot Password?',
+        authSkipSplash: 'Skip Intro →',
         authNextStep: 'Next Step',
         authBack: 'Back',
         authCancelLogin: 'Cancel & Login',
