@@ -1,36 +1,36 @@
 'use client';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { ArrowRight, ShieldCheck, LogIn } from 'lucide-react';
 import { getTranslation } from '@/utils/i18n';
 
 export const SplashScreen = ({ onComplete, language = 'en' }) => {
     const [secondsLeft, setSecondsLeft] = useState(4);
     const videoRef = useRef(null);
-    const onCompleteRef = useRef(onComplete);
-    onCompleteRef.current = onComplete;
-
+    const hasCompletedRef = useRef(false);
     const t = (key) => getTranslation(language, key);
+
+    const handleComplete = useCallback(() => {
+        if (!hasCompletedRef.current) {
+            hasCompletedRef.current = true;
+            onComplete();
+        }
+    }, [onComplete]);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setSecondsLeft((prev) => {
-                if (prev <= 1) {
-                    clearInterval(timer);
-                    if (onCompleteRef.current) {
-                        onCompleteRef.current();
-                    }
-                    return 0;
-                }
-                return prev - 1;
-            });
+            setSecondsLeft((prev) => Math.max(0, prev - 1));
         }, 1000);
         return () => clearInterval(timer);
     }, []);
 
-    const handleVideoEnded = () => {
-        if (onCompleteRef.current) {
-            onCompleteRef.current();
+    useEffect(() => {
+        if (secondsLeft <= 0) {
+            handleComplete();
         }
+    }, [secondsLeft, handleComplete]);
+
+    const handleVideoEnded = () => {
+        handleComplete();
     };
 
     return (
@@ -61,7 +61,7 @@ export const SplashScreen = ({ onComplete, language = 'en' }) => {
                 </div>
 
                 <button 
-                    onClick={onComplete} 
+                    onClick={handleComplete} 
                     className="flex items-center gap-2 bg-slate-950/85 hover:bg-emerald-950/90 border border-slate-700 hover:border-emerald-500 text-slate-200 hover:text-white px-5 py-2.5 rounded-full text-xs font-extrabold backdrop-blur-md transition-all cursor-pointer shadow-2xl hover:scale-105"
                 >
                     <span>{t('authSkipSplash') || 'Skip Intro →'}</span>
@@ -77,7 +77,7 @@ export const SplashScreen = ({ onComplete, language = 'en' }) => {
                         <span>Companion Planting Advisory</span>
                     </div>
                     <button 
-                        onClick={onComplete}
+                        onClick={handleComplete}
                         className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black rounded-2xl text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
                     >
                         <LogIn className="h-4 w-4"/>
