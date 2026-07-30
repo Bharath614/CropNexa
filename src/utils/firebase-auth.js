@@ -15,6 +15,14 @@ export function validateEmail(email) {
 // Friendly Auth Error Message Mapper
 export function mapAuthCodeToMessage(code) {
     switch (code) {
+        case 'auth/operation-not-allowed':
+            return 'Google Sign-In is not enabled in Firebase Console yet. Please go to Firebase Console -> Authentication -> Sign-in method and enable Google.';
+        case 'auth/unauthorized-domain':
+            return 'This website domain is not authorized for Google Sign-In yet. Please add this domain under Firebase Console -> Authentication -> Settings -> Authorized domains.';
+        case 'auth/popup-closed-by-user':
+            return 'Google Sign-In popup was closed before completing sign in.';
+        case 'auth/popup-blocked':
+            return 'Google Sign-In popup was blocked by your browser. Please allow popups for this website.';
         case 'auth/email-already-in-use':
             return 'An account with this email address already exists. Please sign in instead.';
         case 'auth/invalid-email':
@@ -34,7 +42,7 @@ export function mapAuthCodeToMessage(code) {
         case 'auth/network-request-failed':
             return 'Network connection failed. Operating in local mode.';
         default:
-            return 'An unexpected authentication error occurred. Operating in local mode.';
+            return 'An authentication error occurred. Please check your Firebase Console settings or network connection.';
     }
 }
 // Duplicate Account Check
