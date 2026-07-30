@@ -160,7 +160,7 @@ export const FarmProvider = ({ children }) => {
     const [weather, setWeather] = useState(initialWeather);
     const [currentLanguage, setCurrentLanguage] = useState('en');
     const [theme, setThemeState] = useState('dark');
-    const [appSize, setAppSizeState] = useState('auto');
+    const [appSize, setAppSizeState] = useState('mobile');
     const setTheme = (newTheme) => {
         setThemeState(newTheme);
         if (typeof window !== 'undefined') {
@@ -313,7 +313,7 @@ export const FarmProvider = ({ children }) => {
                 if (savedTheme === 'light' || savedTheme === 'dark') {
                     setTheme(savedTheme);
                 }
-                if (savedAppSize === 'auto' || savedAppSize === 'mobile' || savedAppSize === 'full' || savedAppSize === 'standard' || savedAppSize === 'compact') {
+                if (savedAppSize === 'mobile' || savedAppSize === 'full' || savedAppSize === 'standard' || savedAppSize === 'compact') {
                     setAppSizeState(savedAppSize);
                 }
                 const savedActivities = localStorage.getItem('cropnexa_admin_activities');

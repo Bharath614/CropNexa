@@ -108,19 +108,11 @@ export default function Home() {
     };
     const getContainerWidthClass = () => {
         switch (appSize) {
-            case 'mobile':
-                return 'w-full max-w-md mx-auto px-3 pb-16 sm:max-w-[430px] sm:shadow-2xl sm:rounded-3xl sm:border sm:border-slate-800/80 bg-slate-950/90 sm:my-4 sm:p-5 animate-fadeIn';
-            case 'compact':
-                return 'max-w-5xl w-full mx-auto px-4 pb-16';
-            case 'standard':
-                return 'max-w-7xl w-full mx-auto px-4 lg:px-8 pb-16';
-            case 'full':
-                return 'w-full max-w-full px-4 lg:px-8 pb-16';
-            default:
-                // Auto Device-Adaptive Mode:
-                // On Mobile (< 768px): 100% full width, clean edge-to-edge mobile UI
-                // On System/Desktop (>= 768px): clean spacious desktop layout
-                return 'w-full max-w-full md:max-w-7xl mx-auto px-3.5 md:px-8 pb-16 animate-fadeIn';
+            case 'mobile': return 'max-w-[430px] w-full mx-auto px-3.5 sm:px-4 pb-16 shadow-2xl sm:rounded-3xl sm:border sm:border-slate-800/80 bg-slate-950/90 sm:my-4 sm:p-5 animate-fadeIn';
+            case 'compact': return 'max-w-5xl w-full mx-auto px-4 pb-16';
+            case 'standard': return 'max-w-7xl w-full mx-auto px-6 pb-16';
+            case 'full': return 'w-full max-w-full px-4 lg:px-8 pb-16';
+            default: return 'max-w-[430px] w-full mx-auto px-3.5 sm:px-4 pb-16 shadow-2xl sm:rounded-3xl sm:border sm:border-slate-800/80 bg-slate-950/90 sm:my-4 sm:p-5 animate-fadeIn';
         }
     };
     return (<div className={`flex min-h-screen ${theme === 'light' ? 'light bg-slate-100 text-slate-900' : 'dark bg-slate-950 text-slate-100'} flex-col lg:flex-row justify-center items-stretch`}>
@@ -166,7 +158,7 @@ export default function Home() {
             </button>
 
             {/* App Width Sizing Toggle */}
-            <button onClick={() => setAppSize(appSize === 'auto' ? 'mobile' : appSize === 'mobile' ? 'compact' : appSize === 'compact' ? 'standard' : appSize === 'standard' ? 'full' : 'auto')} className="hidden sm:flex p-2 bg-slate-950 hover:bg-emerald-950/40 text-slate-400 hover:text-emerald-300 rounded-xl border border-slate-800 hover:border-emerald-900 transition-colors cursor-pointer items-center gap-1 text-xs font-bold" title={`Current Layout: ${appSize.toUpperCase()} Viewport. Click to cycle layout width.`}>
+            <button onClick={() => setAppSize(appSize === 'mobile' ? 'compact' : appSize === 'compact' ? 'standard' : appSize === 'standard' ? 'full' : 'mobile')} className="hidden sm:flex p-2 bg-slate-950 hover:bg-emerald-950/40 text-slate-400 hover:text-emerald-300 rounded-xl border border-slate-800 hover:border-emerald-900 transition-colors cursor-pointer items-center gap-1 text-xs font-bold" title={`Current Layout: ${appSize.toUpperCase()} Viewport. Click to cycle layout width.`}>
               <Maximize2 className="h-4 w-4 text-emerald-400"/>
               <span className="capitalize text-[11px]">{appSize} View</span>
             </button>
