@@ -495,6 +495,44 @@ export const FarmProvider = ({ children }) => {
         setAuthScreen('app');
         return { success: true };
     };
+
+    const loginWithGoogle = async () => {
+        try {
+            const { signInWithGoogle } = await import('@/utils/firebase-auth');
+            const res = await signInWithGoogle();
+            if (res) {
+                const authenticatedUser = {
+                    id: res.uid,
+                    email: res.profile.email,
+                    mobile: res.profile.mobileNumber || '',
+                    passwordHash: 'google-oauth',
+                    isEmailVerified: true,
+                    isMobileVerified: true,
+                    isActive: true,
+                    accountStatus: 'Active',
+                    failedLoginAttempts: 0,
+                    isLocked: false,
+                    lockUntil: null,
+                    registeredAt: new Date().toLocaleDateString(),
+                    isFirstLogin: false,
+                    smsNotificationsEnabled: true,
+                    profile: res.profile,
+                    soilReport: initialSoilReport
+                };
+                setCurrentUser(authenticatedUser);
+                setProfile(res.profile);
+                setIsAuthenticated(true);
+                setAuthScreen('app');
+                showToast('Google Sign-In Successful!', `Welcome ${res.profile.farmerName}!`, 'success');
+                return { success: true };
+            }
+            return { success: false, error: 'Google sign in cancelled.' };
+        } catch (err) {
+            console.warn('Google login error:', err);
+            const msg = mapAuthCodeToMessage(err?.code || '') || err?.message || 'Google Sign-In failed.';
+            return { success: false, error: msg };
+        }
+    };
     const registerUser = async (newProfile, password) => {
         const newUser = {
             id: `usr-${Date.now()}`,
@@ -786,6 +824,7 @@ Empowering Smarter Farming 🌱`, 'verify_email');
             dispatchOutboundNotification,
             setAuthScreen,
             loginUser,
+            loginWithGoogle,
             registerUser,
             verifyUserEmail,
             verifyUserMobile,

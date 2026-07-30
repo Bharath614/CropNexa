@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, confirmPasswordReset, sendEmailVerification, signOut, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, confirmPasswordReset, sendEmailVerification, signOut, RecaptchaVerifier, signInWithPhoneNumber, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { doc, setDoc, getDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { auth, db, isFirebaseConfigured } from './firebase';
@@ -164,5 +164,42 @@ export async function saveCompanionPlanToFirestore(userId, planData) {
     catch (err) {
         console.warn('Firestore companion plan sync notice:', err);
         return null;
+    }
+}
+
+// Google Sign-In Flow
+export async function signInWithGoogle() {
+    if (!isFirebaseConfigured) return null;
+    try {
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        const uid = user.uid;
+        
+        const googleProfile = {
+            farmerName: user.displayName || user.email?.split('@')[0] || 'Farmer',
+            email: user.email || '',
+            mobileNumber: user.phoneNumber || '',
+            photoURL: user.photoURL || '',
+            address: 'Verified Google Account',
+            farmName: `${user.displayName || 'Farmer'}'s Green Horizon Farm`,
+            preferredLanguage: 'en',
+            currentCrop: 'Tomato',
+            farmingPractice: 'Organic Farming',
+            currentStage: 'Growth'
+        };
+        
+        await saveUserDataToFirestore(uid, {
+            profile: googleProfile,
+            isEmailVerified: true,
+            accountStatus: 'Active',
+            lastLoginAt: serverTimestamp()
+        });
+        
+        return { uid, user, profile: googleProfile };
+    } catch (err) {
+        console.warn('Google Sign-In notice:', err.code, err.message);
+        throw err;
     }
 }
