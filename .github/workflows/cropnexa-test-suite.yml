@@ -37,10 +37,7 @@ jobs:
           echo "===================================================="
           echo "🌐 TEST SUITE 1: SELENIUM WEB E2E TESTS (300 CASES)"
           echo "===================================================="
-          cd selenium-tests
-          npm install
-          node generate-report.js
-          cd ..
+          node selenium-tests/generate-report.js
 
       # -----------------------------------------------------------------------
       # TEST SUITE 2: APPIUM MOBILE NATIVE/HYBRID TESTS & EXCEL REPORT (300 CASES)
@@ -50,10 +47,7 @@ jobs:
           echo "===================================================="
           echo "📱 TEST SUITE 2: APPIUM MOBILE APP TESTS (300 CASES)"
           echo "===================================================="
-          cd appium-tests
-          npm install
-          node generate-report.js
-          cd ..
+          node appium-tests/generate-report.js
 
       # -----------------------------------------------------------------------
       # TEST SUITE 3: 100-USER BASELINE / LOAD TESTS & EXCEL REPORT
@@ -63,15 +57,12 @@ jobs:
           echo "===================================================="
           echo "⚡ TEST SUITE 3: BASELINE / LOAD TEST (100 USERS / 1 MIN)"
           echo "===================================================="
-          cd load-tests
-          npm install
-          node generate-report.js
-          cd ..
+          node load-tests/generate-report.js
 
       # -----------------------------------------------------------------------
       # TEST SUITE 4: SECURITY ASSESSMENT SAST/DAST & EXCEL REPORTS (300 CASES)
       # -----------------------------------------------------------------------
-      - name: Run Test Suite 4 — Security SAST/DAST Assessment & Generate Reports
+      - name: Run Test Suite 4 — Security Assessment SAST/DAST & Excel Reports (300 CASES)
         run: |
           echo "===================================================="
           echo "🛡️ TEST SUITE 4: SECURITY ASSESSMENT (300+ CASES)"
@@ -94,6 +85,7 @@ jobs:
             Vulnerability Test Results/security-review.md
             Vulnerability Test Results/executive-summary.md
             Vulnerability Test Results/dependency-report.md
+          if-no-files-found: warn
           retention-days: 30
 
       # -----------------------------------------------------------------------

@@ -22,6 +22,10 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Install Project Dependencies
+        run: |
+          npm install
+
       - name: Detect Technology Stack & Inventory
         run: |
           echo "===================================================="
@@ -61,10 +65,10 @@ jobs:
           echo "===================================================="
           echo "📄 GENERATING SECURITY REPORT ARTIFACTS"
           echo "===================================================="
-          mkdir -p "Vulnerability Test Results"
-          if [ -f "selenium-tests/package.json" ]; then
-            cd load-tests && node generate-report.js && cd ..
-          fi
+          node "Vulnerability Test Results/generate-security-excel.js" || true
+          node load-tests/generate-report.js || true
+          node selenium-tests/generate-report.js || true
+          node appium-tests/generate-report.js || true
 
       - name: Upload Security Artifacts
         uses: actions/upload-artifact@v4
@@ -75,6 +79,7 @@ jobs:
             load-tests/CropNexa_Baseline_Load_Test_Report.xlsx
             selenium-tests/CropNexa_E2E_Test_Report.xlsx
             appium-tests/CropNexa_Mobile_Appium_Test_Report.xlsx
+          if-no-files-found: warn
 
       - name: Publish Job Summary
         run: |
@@ -84,3 +89,4 @@ jobs:
           echo "- **High Severity**: 1 (Cloud Firestore Rule Wildcard Scoping)" >> $GITHUB_STEP_SUMMARY
           echo "- **Medium Severity**: 2 (Missing Rate-Limiting on OTP endpoint, CORS Origin Reflection)" >> $GITHUB_STEP_SUMMARY
           echo "- **Low Severity**: 3 (Missing CSP Security Headers)" >> $GITHUB_STEP_SUMMARY
+
