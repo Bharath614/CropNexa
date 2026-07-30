@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CropNexa</string>
+    <string name="title_activity_main">CropNexa</string>
+    <string name="package_name">com.cropnexa.app</string>
+    <string name="custom_url_scheme">com.cropnexa.app</string>
+</resources>
