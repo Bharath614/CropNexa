@@ -1,0 +1,14 @@
+{
+  "name": "cropnexa-appium-tests",
+  "version": "1.0.0",
+  "description": "Appium Mobile Native & Hybrid E2E Test Suite and Excel Report Generator for CropNexa Android App",
+  "main": "tests/mobile-app-tests.js",
+  "scripts": {
+    "test": "node tests/mobile-app-tests.js",
+    "generate-report": "node generate-report.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "webdriverio": "^8.32.0"
+  }
+}
