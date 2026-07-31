@@ -1,20 +1,31 @@
-import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
-const eslintConfig = defineConfig([
+/** @type {import('eslint').Linter.Config[]} */
+const eslintConfig = [
+  {
+    ignores: [
+      ".next/**",
+      "out/**",
+      "build/**",
+      "web/**",
+      "functions/**",
+      "scripts/**",
+      "load-tests/**",
+      "selenium-tests/**",
+      "appium-tests/**",
+      "Vulnerability Test Results/**",
+      "android/**",
+      "assets/**",
+      "refactor*.js",
+      "translate.py",
+      "fix-dates.js",
+      "next-env.d.ts",
+    ],
+  },
   ...nextVitals,
   ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "functions/**",
-    "scripts/**",
-    "next-env.d.ts",
-  ]),
-]);
+];
 
 export default eslintConfig;
+

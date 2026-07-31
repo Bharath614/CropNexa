@@ -1,0 +1,44 @@
+name: CropNexa Continuous Integration (Build & Lint)
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-lint:
+    name: Lint Codebase & Validate Next.js Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20 Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Project Dependencies
+        run: |
+          echo "===================================================="
+          echo "📦 INSTALLING DEPENDENCIES"
+          echo "===================================================="
+          npm install
+
+      - name: Run ESLint Code Analysis
+        run: |
+          echo "===================================================="
+          echo "🔍 RUNNING ESLINT ANALYSIS"
+          echo "===================================================="
+          npm run lint
+
+      - name: Build Next.js Production App
+        run: |
+          echo "===================================================="
+          echo "🏗️ BUILDING NEXT.JS APP"
+          echo "===================================================="
+          npm run build

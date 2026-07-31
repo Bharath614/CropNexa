@@ -34,7 +34,7 @@ export const SplashScreen = ({ onComplete, language = 'en' }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex flex-col justify-between bg-black text-white overflow-hidden select-none">
+        <div className="fixed inset-0 z-50 flex flex-col justify-between bg-black text-white overflow-hidden select-none" suppressHydrationWarning>
             {/* Background Fullscreen Video */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <video

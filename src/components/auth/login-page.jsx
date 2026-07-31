@@ -78,7 +78,7 @@ Empowering Smarter Farming 🌱`, 'reset_password');
     };
 
     return (
-        <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col lg:flex-row relative overflow-hidden text-base select-none">
+        <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col lg:flex-row relative overflow-hidden text-base select-none" suppressHydrationWarning>
             {/* Background Ambient Glows */}
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"/>
             <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-3xl pointer-events-none"/>

@@ -162,7 +162,7 @@ export const RegisterPage = ({ onRegisterSuccess, onGoToLogin, currentLanguage, 
             setEmailResendTimer(60);
         }
     };
-    return (<div className="min-h-screen w-full bg-slate-950 text-slate-100 flex items-center justify-center p-4 sm:p-8 relative overflow-hidden py-10 text-base">
+    return (<div className="min-h-screen w-full bg-slate-950 text-slate-100 flex items-center justify-center p-4 sm:p-8 relative overflow-hidden py-10 text-base" suppressHydrationWarning>
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"/>
       <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-3xl pointer-events-none"/>
 

@@ -5,7 +5,10 @@ export const metadata = {
     description: "Mobile-first companion planting advisory app for farmers with real-time weather & stage intelligence.",
     manifest: "/manifest.json",
     icons: {
-        icon: "/favicon.ico",
+        icon: [
+            { url: "/logo.png", type: "image/png" },
+            { url: "/favicon.ico" }
+        ],
         shortcut: "/logo.png",
         apple: "/apple-touch-icon.png",
     },
@@ -27,8 +30,8 @@ export default function RootLayout({ children, }) {
     return (<html lang="en" className="h-full antialiased">
       <head>
         <link rel="manifest" href="/manifest.json"/>
-        <link rel="icon" href="/favicon.ico" sizes="any"/>
         <link rel="icon" type="image/png" href="/logo.png"/>
+        <link rel="shortcut icon" href="/logo.png" type="image/png"/>
         <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
