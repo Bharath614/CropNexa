@@ -323,7 +323,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Farming Practice"
+                android:hint="@string/hint_farming_practice"
                 android:textColorHint="#94a3b8"
                 app:boxBackgroundColor="#0f172a"
                 app:hintTextColor="#34d399"
@@ -335,18 +335,161 @@
                     android:textColor="#f8fafc" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Section 3: SMS Notifications -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/section_sms"
+                android:textColor="#34d399"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/colorSurface"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="@color/colorBorder"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sms_title"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sms_desc"
+                            android:textColor="@color/colorTextMuted"
+                            android:textSize="11sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchSms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:checked="true"
+                        app:thumbTint="@color/colorPrimary"
+                        app:trackTint="@color/colorBorder"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Section 4: Language, Theme & Preferences -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/section_language_theme"
+                android:textColor="#34d399"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/colorSurface"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="@color/colorBorder"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Language Picker -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_language"
+                        android:textColor="@color/colorTextMuted"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorInputBackground"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Theme Picker -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_theme"
+                        android:textColor="@color/colorTextMuted"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="8dp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbDark"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/theme_dark"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="13sp"
+                            android:checked="true"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbLight"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/theme_light"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="13sp"
+                            app:buttonTint="@color/colorPrimary"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <Button
                 android:id="@+id/btnSaveSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="#0ea5e9"
+                android:backgroundTint="@color/colorPrimary"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
-                android:text="Save Profile &amp; Preferences"
+                android:text="@string/btn_save"
                 android:textColor="#ffffff" />
-                
+
             <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
@@ -355,7 +498,7 @@
                 android:backgroundTint="#ef4444"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
-                android:text="Log Out"
+                android:text="@string/logout"
                 android:textColor="#ffffff" />
         </LinearLayout>
     </ScrollView>

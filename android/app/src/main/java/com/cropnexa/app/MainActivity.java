@@ -16,7 +16,14 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
 
     @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.applyLocale(newBase));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Apply saved theme FIRST (before super.onCreate) so DayNight is correct
+        LocaleHelper.applyTheme(this);
         // Must be called before super.onCreate if using androidx.core:core-splashscreen
         androidx.core.splashscreen.SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
