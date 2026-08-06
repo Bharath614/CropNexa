@@ -233,8 +233,11 @@ public class SettingsFragment extends Fragment {
                 LocaleHelper.saveLanguage(requireContext(), newLang);
                 LocaleHelper.saveTheme(requireContext(), newTheme);
                 LocaleHelper.applyTheme(newTheme);
-                if (requireActivity() != null) {
-                    requireActivity().recreate();
+                if (isAdded() && getActivity() != null) {
+                    android.content.Intent intent = getActivity().getIntent();
+                    getActivity().finish();
+                    getActivity().startActivity(intent);
+                    getActivity().overridePendingTransition(0, 0);
                 }
             })
             .addOnFailureListener(e ->

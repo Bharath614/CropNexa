@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Farmer Settings"
+            app:title="@string/settings_title"
             app:titleTextColor="@color/colorTextPrimary"
             app:navigationIcon="?attr/homeAsUpIndicator" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1. PERSONAL INFORMATION"
+                android:text="@string/section_personal"
                 android:textColor="#34d399"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -47,7 +47,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Farmer Name"
+                android:hint="@string/hint_farmer_name"
                 android:textColorHint="@color/colorTextMuted"
                 app:boxBackgroundColor="@color/colorSurface"
                 app:hintTextColor="@color/colorEmerald"
@@ -62,7 +62,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mobile Number"
+                android:hint="@string/hint_mobile"
                 android:textColorHint="@color/colorTextMuted"
                 app:boxBackgroundColor="@color/colorSurface"
                 app:hintTextColor="@color/colorEmerald"
@@ -78,7 +78,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email Address"
+                android:hint="@string/hint_email"
                 android:textColorHint="@color/colorTextMuted"
                 app:boxBackgroundColor="@color/colorSurface"
                 app:hintTextColor="@color/colorEmerald"
@@ -94,7 +94,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Residential Address"
+                android:hint="@string/hint_address"
                 android:textColorHint="@color/colorTextMuted"
                 app:boxBackgroundColor="@color/colorSurface"
                 app:hintTextColor="@color/colorEmerald"
@@ -110,7 +110,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2. FARM &amp; LAND SPECIFICATION"
+                android:text="@string/section_farm"
                 android:textColor="#34d399"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -119,7 +119,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Farm Name"
+                android:hint="@string/hint_farm_name"
                 android:textColorHint="@color/colorTextMuted"
                 app:boxBackgroundColor="@color/colorSurface"
                 app:hintTextColor="@color/colorEmerald"
@@ -134,7 +134,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="GPS Location"
+                android:hint="@string/hint_gps"
                 android:textColorHint="@color/colorTextMuted"
                 app:boxBackgroundColor="@color/colorSurface"
                 app:hintTextColor="@color/colorEmerald"
@@ -157,7 +157,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Village"
+                    android:hint="@string/hint_village"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface"
                     android:layout_marginEnd="4dp">
@@ -172,7 +172,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="District"
+                    android:hint="@string/hint_district"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface"
                     android:layout_marginEnd="4dp">
@@ -187,7 +187,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="State"
+                    android:hint="@string/hint_state"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface">
                     <com.google.android.material.textfield.TextInputEditText
@@ -209,7 +209,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Total Land (Ha)"
+                    android:hint="@string/hint_total_land"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface"
                     android:layout_marginEnd="4dp">
@@ -225,7 +225,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Irrigated (Ha)"
+                    android:hint="@string/hint_irrigated"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface"
                     android:layout_marginEnd="4dp">
@@ -241,7 +241,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Rainfed (Ha)"
+                    android:hint="@string/hint_rainfed"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface">
                     <com.google.android.material.textfield.TextInputEditText
@@ -256,7 +256,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Soil Type"
+                android:hint="@string/hint_soil_type"
                 android:textColorHint="@color/colorTextMuted"
                 app:boxBackgroundColor="@color/colorSurface"
                 app:hintTextColor="@color/colorEmerald"
@@ -279,7 +279,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Previous Crop"
+                    android:hint="@string/hint_previous_crop"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface"
                     android:layout_marginEnd="4dp">
@@ -294,7 +294,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Current Crop"
+                    android:hint="@string/hint_current_crop"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface"
                     android:layout_marginEnd="4dp">
@@ -309,7 +309,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Planned Crop"
+                    android:hint="@string/hint_planned_crop"
                     android:textColorHint="@color/colorTextMuted"
                     app:boxBackgroundColor="@color/colorSurface">
                     <com.google.android.material.textfield.TextInputEditText

@@ -4,28 +4,28 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/companionFragment"
-            android:title="Companion Planner" />
+            android:title="@string/nav_companion" />
         <item
             android:id="@+id/soilFragment"
-            android:title="Soil Health Engine" />
+            android:title="@string/nav_soil" />
         <item
             android:id="@+id/nutrientFragment"
-            android:title="Nutrient Management" />
+            android:title="@string/nav_nutrient" />
         <item
             android:id="@+id/insightsFragment"
-            android:title="AI Insights" />
+            android:title="@string/nav_insights" />
         <item
             android:id="@+id/calendarFragment"
-            android:title="Farm Calendar" />
+            android:title="@string/nav_calendar" />
         <item
             android:id="@+id/notificationsFragment"
-            android:title="Notifications" />
+            android:title="@string/nav_notifications" />
         <item
             android:id="@+id/reportsFragment"
-            android:title="Reports" />
+            android:title="@string/nav_reports" />
         <item
             android:id="@+id/adminFragment"
-            android:title="Admin Dashboard" />
+            android:title="@string/nav_admin" />
     </group>
 
 </menu>
