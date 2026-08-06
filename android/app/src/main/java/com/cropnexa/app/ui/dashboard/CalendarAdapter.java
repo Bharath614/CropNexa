@@ -32,8 +32,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.TaskVi
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         CalendarTask task = taskList.get(position);
         holder.tvTaskDate.setText("Scheduled: " + task.getDate());
-        holder.tvTaskTitle.setText(task.getTitle());
-        holder.tvTaskCategory.setText(task.getDescription());
+        holder.tvTaskTitle.setText(task.getTask());
+        holder.tvTaskCategory.setText(task.getCategory());
+        if (holder.tvTaskPriority != null) {
+            holder.tvTaskPriority.setText(task.getPriority());
+        }
     }
 
     @Override
