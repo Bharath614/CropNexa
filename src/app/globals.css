@@ -23,7 +23,7 @@ html.light, .light {
 }
 
 html {
-  font-size: 16px;
+  font-size: 18px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 

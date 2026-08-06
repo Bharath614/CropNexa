@@ -22,6 +22,7 @@ import { RegisterPage } from '@/components/auth/register-page';
 import { ResetPasswordPage } from '@/components/auth/reset-password-page';
 import { EmailSmsPreviewModal } from '@/components/auth/email-sms-preview-modal';
 import { ToastContainer } from '@/components/ui/toast';
+import BottomNav from '@/components/bottom-nav';
 import { SUPPORTED_LANGUAGES } from '@/utils/i18n';
 import { BadgeAlert, AlertTriangle, X, ShieldAlert, LogOut, Globe, Bell, Sun, Moon, Maximize2 } from 'lucide-react';
 export default function Home() {
@@ -123,12 +124,12 @@ export default function Home() {
                 return 'w-full max-w-full md:max-w-7xl mx-auto px-3.5 md:px-8 pb-16 animate-fadeIn';
         }
     };
-    return (<div className={`flex min-h-screen ${theme === 'light' ? 'light bg-slate-100 text-slate-900' : 'dark bg-slate-950 text-slate-100'} flex-col lg:flex-row justify-center items-stretch`}>
+    return (<div className={`flex h-[100dvh] w-full overflow-hidden ${theme === 'light' ? 'light bg-slate-100 text-slate-900' : 'dark bg-slate-950 text-slate-100'} flex-col lg:flex-row justify-center items-stretch`}>
       {/* Left Navigation Sidebar */}
       <Sidebar />
 
       {/* Main Panel Content Area */}
-      <main className="flex-1 flex flex-col h-screen overflow-y-auto custom-scrollbar">
+      <main className="flex-1 flex flex-col overflow-y-auto custom-scrollbar relative">
         {/* Top Status Header Bar */}
         <header className="bg-slate-900/60 border-b border-emerald-950/50 px-6 py-3.5 flex items-center justify-between backdrop-blur-md sticky top-0 z-30 print:hidden">
           <div className="flex items-center gap-3">
@@ -258,5 +259,8 @@ export default function Home() {
 
       {/* Global Toast Container */}
       <ToastContainer toasts={toasts} onDismiss={removeToast}/>
+
+      {/* Mobile Bottom Navigation */}
+      <BottomNav />
     </div>);
 }

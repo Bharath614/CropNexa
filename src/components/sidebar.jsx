@@ -42,7 +42,7 @@ export const Sidebar = () => {
         fixed inset-y-0 left-0 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
         lg:relative lg:translate-x-0 transition-transform duration-300 ease-out z-40 
         w-64 bg-slate-900 border-r border-emerald-950 text-slate-100 flex flex-col justify-between 
-        shadow-2xl h-screen sticky top-0
+        shadow-2xl h-full
       `}>
         {/* Top Header section */}
         <div>
