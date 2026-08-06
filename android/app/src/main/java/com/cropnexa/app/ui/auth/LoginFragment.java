@@ -58,8 +58,23 @@ public class LoginFragment extends Fragment {
                 .signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity(), task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show();
-                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_dashboardFragment);
+                        String uid = FirebaseManager.getInstance().getAuth().getCurrentUser().getUid();
+                        loginButton.setText("Checking permissions...");
+                        
+                        FirebaseManager.getInstance().getDb().collection("users").document(uid).get()
+                            .addOnSuccessListener(documentSnapshot -> {
+                                Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show();
+                                Boolean isAdmin = documentSnapshot.getBoolean("isAdmin");
+                                if (Boolean.TRUE.equals(isAdmin)) {
+                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_adminFragment);
+                                } else {
+                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_dashboardFragment);
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show();
+                                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_dashboardFragment);
+                            });
                     } else {
                         Toast.makeText(requireContext(), "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         loginButton.setText("Log In");

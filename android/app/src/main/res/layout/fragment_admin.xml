@@ -63,9 +63,10 @@
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/tvTotalFarmers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5"
+                            android:text="0"
                             android:textColor="#f8fafc"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -94,9 +95,10 @@
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/tvVerifiedAccounts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3"
+                            android:text="0"
                             android:textColor="#34d399"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -104,80 +106,21 @@
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
-            <!-- Chart Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#0f172a"
-                app:cardCornerRadius="16dp"
-                app:strokeColor="#1e293b"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ACTIVITY BY CATEGORY"
-                        android:textColor="#cbd5e1"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="8dp" />
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/pieChartAdmin"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Global Activity Stream -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GLOBAL ACTIVITY STREAM"
+                android:text="REGISTERED USERS"
                 android:textColor="#94a3b8"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvUsers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#0f172a"
-                app:cardCornerRadius="12dp"
-                app:strokeColor="#1e293b"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Successful Login"
-                        android:textColor="#f8fafc"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="User U entered valid credentials."
-                        android:textColor="#94a3b8"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Today • 10:05 AM"
-                        android:textColor="#475569"
-                        android:textSize="10sp"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
     </ScrollView>
