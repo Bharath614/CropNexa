@@ -342,6 +342,8 @@ export const FarmProvider = ({ children }) => {
                             setProfile(data.profile);
                         if (data.soilReport)
                             setSoilReport(data.soilReport);
+                        if (data.notifications)
+                            setNotifications(data.notifications);
                         setIsAuthenticated(true);
                     }
                 }
@@ -370,7 +372,10 @@ export const FarmProvider = ({ children }) => {
     }, [soilReport, currentUser?.id]);
     useEffect(() => {
         localStorage.setItem('cropnexa_app_notifications', JSON.stringify(notifications));
-    }, [notifications]);
+        if (currentUser?.id && isFirebaseConfigured) {
+            saveUserDataToFirestore(currentUser.id, { notifications });
+        }
+    }, [notifications, currentUser?.id]);
     useEffect(() => {
         localStorage.setItem('cropnexa_admin_activities', JSON.stringify(adminActivities));
     }, [adminActivities]);
@@ -424,6 +429,8 @@ export const FarmProvider = ({ children }) => {
                         userProfile = data.profile;
                     if (data.soilReport)
                         userSoil = data.soilReport;
+                    if (data.notifications)
+                        setNotifications(data.notifications);
                 }
                 const adminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@cropnexa.in').toLowerCase();
                 const authenticatedUser = {

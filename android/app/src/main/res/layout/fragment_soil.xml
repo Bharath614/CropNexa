@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0f172a">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f172a"
+        app:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Soil Health"
+            app:titleTextColor="#f8fafc" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Soil Score Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#1e293b"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#334155"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SOIL HEALTH INDEX"
+                        android:textColor="#94a3b8"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="16dp">
+
+                        <com.cropnexa.app.ui.dashboard.CircularGaugeView
+                            android:id="@+id/soilScoreProgress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/soilScoreText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="88"
+                                android:textColor="#10b981"
+                                android:textSize="32sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/soilStatusText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Optimal"
+                                android:textColor="#10b981"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <!-- Microbial Health -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="#064e3b"
+                        android:padding="12dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🧬"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/microbialHealthText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Active microbial presence"
+                                android:textColor="#34d399"
+                                android:textStyle="bold"
+                                android:textSize="12sp" />
+                            <TextView
+                                android:id="@+id/microbialSubText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Based on Organic Carbon &amp; NPK"
+                                android:textColor="#94a3b8"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- File Uploader Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#1e293b"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#334155"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upload Soil Test Report"
+                        android:textColor="#f8fafc"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="AI will extract 12 metrics from report"
+                        android:textColor="#94a3b8"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/btnUploadArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_dashed_upload"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="☁️"
+                            android:textSize="32sp"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Click to Select Soil Test Report"
+                            android:textColor="#f8fafc"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Supports PDF, JPG, PNG (Up to 10 MB)"
+                            android:textColor="#94a3b8"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Auto-Generated Plan Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#1e293b"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#334155"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💡 Soil-Matched AI Plan"
+                        android:textColor="#f8fafc"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Fertilizer Dose -->
+                    <TextView
+                        android:id="@+id/fertilizerTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FERTILIZER GUIDELINES"
+                        android:textColor="#94a3b8"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:id="@+id/fertilizerContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="16dp">
+                        <!-- Dynamic fertilizer recommendations will be added here -->
+                    </LinearLayout>
+
+                    <!-- Companion Plants -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🌱 SOIL RESTORATIVE COMPANIONS"
+                        android:textColor="#94a3b8"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:id="@+id/companionContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!-- Dynamic companions will be added here -->
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 12-Nutrient Chemical Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/gridTitleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="12 SOIL CHEMISTRY PARAMETERS"
+                    android:textColor="#94a3b8"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnToggleEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:backgroundTint="#064e3b"
+                    android:textColor="#34d399"
+                    android:textSize="10sp"
+                    android:text="✏️ Edit Metrics"
+                    app:cornerRadius="8dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"/>
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/manualEntryCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#1e293b"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#334155"
+                app:strokeWidth="1dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✏️ Manual Soil Test Chemistry Entry (All 12 Parameters)"
+                        android:textColor="#f8fafc"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Grid Layout for inputs -->
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2"
+                        android:useDefaultMargins="true"
+                        android:alignmentMode="alignBounds">
+
+                        <!-- pH -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Soil pH" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_ph" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        <!-- EC -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="EC (mS/cm)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_ec" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        
+                        <!-- Organic Carbon -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Organic Carbon (%)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_oc" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        <!-- Nitrogen -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Nitrogen (N) (kg/ha)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_n" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+
+                        <!-- Phosphorus -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Phosphorus (P) (kg/ha)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_p" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        <!-- Potassium -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Potassium (K) (kg/ha)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_k" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+
+                        <!-- Sulphur -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Sulphur (S) (ppm)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_s" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        <!-- Zinc -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Zinc (Zn) (ppm)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_zn" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+
+                        <!-- Iron -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Iron (Fe) (ppm)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_fe" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        <!-- Boron -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Boron (B) (ppm)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_b" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+
+                        <!-- Copper -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Copper (Cu) (ppm)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_cu" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        <!-- Manganese -->
+                        <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
+                            <TextView android:text="Manganese (Mn) (ppm)" android:textColor="#94a3b8" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <EditText android:id="@+id/edit_mn" android:layout_width="match_parent" android:layout_height="40dp" android:background="#0f172a" android:textColor="#f8fafc" android:padding="8dp" android:textSize="12sp" android:inputType="numberDecimal"/>
+                        </LinearLayout>
+
+                    </GridLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="end"
+                        android:layout_marginTop="16dp">
+
+                        <Button
+                            android:id="@+id/btnCancelEdit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cancel"
+                            android:backgroundTint="#0f172a"
+                            android:textColor="#94a3b8"
+                            android:layout_marginEnd="8dp"/>
+
+                        <Button
+                            android:id="@+id/btnSaveEdit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💾 Save &amp; Recalculate"
+                            android:backgroundTint="#059669"
+                            android:textColor="#f8fafc" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/soilRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,8 +32,13 @@ export const Sidebar = () => {
           <img src="/logo.png" alt="CropNexa Logo" className="h-8 w-8 rounded-lg object-contain shadow-md border border-emerald-500/40" />
           <span className="font-bold text-lg tracking-wider text-emerald-300">CROP NEXA</span>
         </div>
-        <button onClick={toggleSidebar} className="p-2 text-emerald-400 hover:text-white transition-colors focus:outline-none cursor-pointer">
-          {isOpen ? <X className="h-6 w-6"/> : <Menu className="h-6 w-6"/>}
+        <button onClick={toggleSidebar} className="p-2 text-emerald-400 hover:text-white transition-colors focus:outline-none cursor-pointer flex items-center gap-1">
+          {isOpen ? <X className="h-6 w-6"/> : (
+            <>
+              <span className="text-sm font-semibold uppercase tracking-wider">Menu</span>
+              <Menu className="h-6 w-6"/>
+            </>
+          )}
         </button>
       </div>
 

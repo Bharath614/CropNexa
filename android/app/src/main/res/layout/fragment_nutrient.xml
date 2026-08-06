@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0f172a">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f172a"
+        app:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Nutrient Advisory"
+            app:titleTextColor="#f8fafc"
+            app:navigationIcon="?attr/homeAsUpIndicator" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Practice Selector Banner -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#0f172a"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#064e3b"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nutrient Management Panel"
+                        android:textColor="#f8fafc"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Dosage recommendations and application split calendars customized for your farm area."
+                        android:textColor="#94a3b8"
+                        android:textSize="12sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+                        <Button
+                            android:id="@+id/btnOrganic"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="4dp"
+                            android:textSize="10sp"
+                            android:text="Organic"
+                            android:backgroundTint="#064e3b"
+                            android:textColor="#34d399" />
+                        <Button
+                            android:id="@+id/btnInm"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="4dp"
+                            android:textSize="10sp"
+                            android:text="INM"
+                            android:backgroundTint="#1e293b"
+                            android:textColor="#94a3b8" />
+                        <Button
+                            android:id="@+id/btnConventional"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="10sp"
+                            android:text="Conventional"
+                            android:backgroundTint="#1e293b"
+                            android:textColor="#94a3b8" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Info Widget -->
+            <TextView
+                android:id="@+id/tvLandAreaInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_emoji_placeholder"
+                android:padding="12dp"
+                android:text="Calculations are adjusted for a land area of 50.0 Hectares."
+                android:textColor="#94a3b8"
+                android:textSize="12sp" />
+
+            <!-- Dynamic AI Prescriptions -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/aiPrescriptionCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#1e1b4b"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#312e81"
+                app:strokeWidth="1dp"
+                android:visibility="gone">
+                <LinearLayout
+                    android:id="@+id/aiPrescriptionContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AI SOIL-MATCHED PRESCRIPTIONS"
+                        android:textColor="#818cf8"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===================== CONVENTIONAL ===================== -->
+            <LinearLayout
+                android:id="@+id/viewConventional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Split Schedule Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#0f172a"
+                    app:cardCornerRadius="16dp"
+                    app:strokeColor="#1e293b"
+                    app:strokeWidth="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NPK SPLIT APPLICATION SCHEDULE"
+                            android:textColor="#64748b"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Table Header -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="8dp">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="Stage" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="N" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="P" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="K" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="Total" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+
+                        <!-- Row 1 -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="8dp" android:background="#0f172a">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="Basal" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="40" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="60" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="40" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:id="@+id/tvConvBasalTotal" android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="140 kg" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+                        
+                        <!-- Row 2 -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="8dp" android:background="#0f172a">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="Top Dress 1" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="40" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="0" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="0" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:id="@+id/tvConvTop1Total" android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="40 kg" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+
+                        <!-- Row 3 -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="8dp" android:background="#0f172a">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="Top Dress 2" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="40" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="0" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="20" android:textColor="#cbd5e1" android:textSize="10sp" android:gravity="center"/>
+                            <TextView android:id="@+id/tvConvTop2Total" android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="60 kg" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+
+                        <!-- Fertigation Advisory -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginTop="8dp" android:layout_marginBottom="4dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FERTIGATION ADVISORY" android:textColor="#cbd5e1" android:textSize="9sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="For micro-drip networks, implement split N fertigation on a weekly cycle (10 equal splits) to mitigate nitrogen leaching under monsoonal weather." android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- NPK Ratios Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#0f172a"
+                    app:cardCornerRadius="16dp"
+                    app:strokeColor="#1e293b"
+                    app:strokeWidth="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NPK RATIOS" android:textColor="#64748b" android:textSize="12sp" android:textStyle="bold" android:layout_marginBottom="12dp" />
+                        
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginBottom="8dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UREA (46% N)" android:textColor="#64748b" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:id="@+id/tvConvUreaTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="260.0 kg total" android:textColor="#e2e8f0" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="2dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginBottom="8dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SINGLE SUPER PHOSPHATE (SSP - 16% P)" android:textColor="#64748b" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:id="@+id/tvConvSspTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="375.0 kg total" android:textColor="#e2e8f0" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="2dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginBottom="12dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MURIATE OF POTASH (MOP - 60% K)" android:textColor="#64748b" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:id="@+id/tvConvMopTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="100.0 kg total" android:textColor="#e2e8f0" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="2dp"/>
+                        </LinearLayout>
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚠ Apply chemical doses only on damp soil." android:textColor="#d97706" android:textSize="10sp" android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- ===================== ORGANIC ===================== -->
+            <LinearLayout
+                android:id="@+id/viewOrganic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#0f172a"
+                    app:cardCornerRadius="16dp"
+                    app:strokeColor="#1e293b"
+                    app:strokeWidth="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ORGANIC INPUT REQUIREMENTS"
+                            android:textColor="#64748b"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Organic Grid -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginBottom="8dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginEnd="4dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FYM" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="15 t/ha" android:textColor="#64748b" android:textSize="10sp"/>
+                                <TextView android:id="@+id/tvOrgFym" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="15.0 tonnes" android:textColor="#34d399" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginStart="4dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vermicompost" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5 t/ha" android:textColor="#64748b" android:textSize="10sp"/>
+                                <TextView android:id="@+id/tvOrgVermi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5.0 tonnes" android:textColor="#34d399" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginEnd="4dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neem Cake" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="250 kg/ha" android:textColor="#64748b" android:textSize="10sp"/>
+                                <TextView android:id="@+id/tvOrgNeem" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="250 kg" android:textColor="#34d399" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginStart="4dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Groundnut Cake" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="300 kg/ha" android:textColor="#64748b" android:textSize="10sp"/>
+                                <TextView android:id="@+id/tvOrgGroundnut" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="300 kg" android:textColor="#34d399" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        
+                        <!-- Green Manuring Advisory -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#020617" android:padding="12dp" android:layout_marginTop="12dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="GREEN MANURING SCHEDULE" android:textColor="#cbd5e1" android:textSize="9sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sow Sunnhemp (Crotalaria juncea) or Dhaincha (Sesbania aculeata) at 25 kg/ha. Incorporate into the field at 45 days (pre-flowering) using a disc harrow. Unlocks 60-80 kg/ha residual nitrogen." android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Biofertilizers Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#0f172a"
+                    app:cardCornerRadius="16dp"
+                    app:strokeColor="#1e293b"
+                    app:strokeWidth="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BIOFERTILIZERS &amp; SUPPLEMENTS" android:textColor="#64748b" android:textSize="12sp" android:textStyle="bold" android:layout_marginBottom="12dp" />
+                        
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="12dp" android:layout_marginBottom="8dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rhizobium (Legumes)" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pre-seed inoculation. Boosts root nodule growth." android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="500G PER" android:textColor="#34d399" android:textSize="10sp" android:textStyle="bold"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="12dp" android:layout_marginBottom="8dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Azotobacter / Azospirillum" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Soil application. Fixes non-symbiotic nitrogen." android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2.5 KG" android:textColor="#34d399" android:textSize="10sp" android:textStyle="bold"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="12dp" android:layout_marginBottom="8dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PSB (Phosphate Solubilizing)" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Solubilizes tied phosphorus complexes." android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2.5 KG" android:textColor="#34d399" android:textSize="10sp" android:textStyle="bold"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="12dp" android:layout_marginBottom="12dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Humic Acid Liquid" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Drenching. Elevates micronutrient bio-absorption." android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5 LITRES" android:textColor="#34d399" android:textSize="10sp" android:textStyle="bold"/>
+                        </LinearLayout>
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Certified Organic Schedule" android:textColor="#34d399" android:textSize="10sp" android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- ===================== INM ===================== -->
+            <LinearLayout
+                android:id="@+id/viewInm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- INM 75:25 Rule -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#0f172a"
+                    app:cardCornerRadius="16dp"
+                    app:strokeColor="#1e293b"
+                    app:strokeWidth="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="INM 75:25 BALANCED ALLOCATION"
+                            android:textColor="#64748b"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- INM Visual Split -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:background="#020617"
+                            android:padding="16dp"
+                            android:layout_marginBottom="16dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="75% CHEMICAL" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold"/>
+                                <TextView android:id="@+id/tvInmChemical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="120 kg NPK" android:textColor="#38bdf8" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                            </LinearLayout>
+                            <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#334155"/>
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="25% ORGANIC" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold"/>
+                                <TextView android:id="@+id/tvInmOrganic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1.25 t Vermi" android:textColor="#34d399" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- INM Table -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="8dp">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="Input" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="Req Total" android:textColor="#94a3b8" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="8dp" android:background="#0f172a">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="Urea (Chemical N)" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:id="@+id/tvInmUrea" android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="150 kg" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="8dp" android:background="#0f172a">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="SSP (Chemical P)" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:id="@+id/tvInmSsp" android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="220 kg" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="8dp" android:background="#0f172a">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="Humic Acid Booster" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:id="@+id/tvInmHumic" android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="5 L" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="8dp" android:background="#0f172a">
+                            <TextView android:layout_width="0dp" android:layout_weight="2" android:layout_height="wrap_content" android:text="VAM (Mycorrhizae)" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold"/>
+                            <TextView android:id="@+id/tvInmVam" android:layout_width="0dp" android:layout_weight="1.5" android:layout_height="wrap_content" android:text="10 kg" android:textColor="#e2e8f0" android:textSize="10sp" android:textStyle="bold" android:gravity="end"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Micronutrient Schedule -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#0f172a"
+                    app:cardCornerRadius="16dp"
+                    app:strokeColor="#1e293b"
+                    app:strokeWidth="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ESSENTIAL MICRONUTRIENT SCHEDULE" android:textColor="#64748b" android:textSize="12sp" android:textStyle="bold" android:layout_marginBottom="12dp" />
+                        
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="12dp" android:layout_marginBottom="8dp" android:gravity="center_vertical">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Zinc Sulphate (Zn)" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dose: 25 kg/ha" android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:id="@+id/tvInmZinc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="62.5 kg" android:textColor="#2dd4bf" android:textSize="14sp" android:textStyle="bold"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="12dp" android:layout_marginBottom="8dp" android:gravity="center_vertical">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Borax (Boron B)" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dose: 10 kg/ha" android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:id="@+id/tvInmBorax" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="25.0 kg" android:textColor="#2dd4bf" android:textSize="14sp" android:textStyle="bold"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="#020617" android:padding="12dp" android:layout_marginBottom="12dp" android:gravity="center_vertical">
+                            <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Elemental Sulphur (S)" android:textColor="#e2e8f0" android:textSize="12sp" android:textStyle="bold"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dose: 20 kg/ha" android:textColor="#64748b" android:textSize="10sp" android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <TextView android:id="@+id/tvInmSulphur" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="50.0 kg" android:textColor="#2dd4bf" android:textSize="14sp" android:textStyle="bold"/>
+                        </LinearLayout>
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yield Booster Micronutrients Included" android:textColor="#2dd4bf" android:textSize="10sp" android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

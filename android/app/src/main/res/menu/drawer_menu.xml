@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/companionFragment"
+            android:title="Companion Planner" />
+        <item
+            android:id="@+id/soilFragment"
+            android:title="Soil Health Engine" />
+        <item
+            android:id="@+id/nutrientFragment"
+            android:title="Nutrient Management" />
+        <item
+            android:id="@+id/insightsFragment"
+            android:title="AI Insights" />
+        <item
+            android:id="@+id/calendarFragment"
+            android:title="Farm Calendar" />
+        <item
+            android:id="@+id/notificationsFragment"
+            android:title="Notifications" />
+        <item
+            android:id="@+id/reportsFragment"
+            android:title="Reports" />
+        <item
+            android:id="@+id/adminFragment"
+            android:title="Admin Dashboard" />
+    </group>
+
+</menu>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "964090441818",
+    "project_id": "cropnexa-c059f",
+    "storage_bucket": "cropnexa-c059f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964090441818:android:6523af7a00cd456f44a863",
+        "android_client_info": {
+          "package_name": "com.cropnexa.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964090441818-qcldcmllq791b2o60dt2g3lte0mjh9od.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLuXC2tgPZRZqqgZMqaogfLnzMehgUcJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964090441818-qcldcmllq791b2o60dt2g3lte0mjh9od.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

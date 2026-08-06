@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFarm } from '@/context/farm-context';
-import { ClipboardList, Sparkles, Scale, Info, Layers, CheckCircle2 } from 'lucide-react';
+import { ClipboardList, Sparkles, Scale, Info, Layers, CheckCircle2, FlaskConical } from 'lucide-react';
+import { evaluateSoilHealth } from '@/utils/soil-evaluation';
+
 export const Nutrient = () => {
     const { profile, updateProfile } = useFarm();
     const { t } = useTranslation();
@@ -12,6 +14,30 @@ export const Nutrient = () => {
     const getWeightRequired = (kgPerHaRate) => {
         return (kgPerHaRate * landArea).toFixed(1);
     };
+
+    const soilResult = evaluateSoilHealth(profile.soilReport || {}, activePracticeTab);
+    const dynamicRecs = soilResult.fertilizerRecommendations;
+
+    const renderDynamicAlerts = (recs) => {
+      if (!recs || recs.length === 0) return null;
+      return (
+        <div className="lg:col-span-3 bg-indigo-950/40 border border-indigo-900/50 rounded-3xl p-5 mb-2">
+          <h3 className="text-xs font-bold text-indigo-400 uppercase tracking-widest flex items-center gap-2 mb-3">
+            <FlaskConical className="h-4 w-4" />
+            AI Soil-Matched Prescriptions
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {recs.map((rec, idx) => (
+              <div key={idx} className="bg-indigo-900/20 p-3 rounded-2xl border border-indigo-900/50 flex items-start gap-3">
+                <div className="h-2 w-2 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
+                <span className="text-xs text-indigo-100/90 leading-relaxed">{rec}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    };
+
     return (<div className="space-y-6 animate-fadeIn">
       {/* Practice Selector Banner */}
       <div className="bg-slate-900/40 border border-emerald-950/30 p-6 rounded-3xl flex flex-col lg:flex-row lg:items-center justify-between gap-4">
@@ -49,6 +75,7 @@ export const Nutrient = () => {
 
       {/* Mode View Panels */}
       {activePracticeTab === 'Conventional Farming' && (<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {renderDynamicAlerts(dynamicRecs.conventional)}
           {/* Main Dosage Schedule */}
           <div className="lg:col-span-2 bg-slate-900/60 border border-emerald-950/40 rounded-3xl p-6 shadow-md space-y-4">
             <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
@@ -124,6 +151,7 @@ export const Nutrient = () => {
         </div>)}
 
       {activePracticeTab === 'Organic Farming' && (<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {renderDynamicAlerts(dynamicRecs.organic)}
           {/* Organic Inputs calculation */}
           <div className="lg:col-span-2 bg-slate-900/60 border border-emerald-950/40 rounded-3xl p-6 shadow-md space-y-4">
             <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
@@ -183,6 +211,7 @@ export const Nutrient = () => {
         </div>)}
 
       {activePracticeTab === 'Integrated Nutrient Management (INM)' && (<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {renderDynamicAlerts(dynamicRecs.inm)}
           {/* INM 75:25 Rule details */}
           <div className="lg:col-span-2 bg-slate-900/60 border border-emerald-950/40 rounded-3xl p-6 shadow-md space-y-4">
             <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
