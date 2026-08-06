@@ -62,6 +62,38 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 }
             });
+            // Dynamically show/hide Admin Dashboard menu item based on user role
+            FirebaseManager.getInstance().getAuth().addAuthStateListener(new com.google.firebase.auth.FirebaseAuth.AuthStateListener() {
+                private com.google.firebase.firestore.ListenerRegistration roleListener = null;
+                
+                @Override
+                public void onAuthStateChanged(@androidx.annotation.NonNull com.google.firebase.auth.FirebaseAuth firebaseAuth) {
+                    com.google.firebase.auth.FirebaseUser user = firebaseAuth.getCurrentUser();
+                    android.view.Menu menu = navigationView.getMenu();
+                    android.view.MenuItem adminItem = menu.findItem(R.id.adminFragment);
+                    
+                    if (roleListener != null) {
+                        roleListener.remove();
+                        roleListener = null;
+                    }
+                    
+                    if (adminItem != null) {
+                        if (user != null) {
+                            // Use snapshot listener to keep role updated
+                            roleListener = FirebaseManager.getInstance().getDb().collection("users").document(user.getUid())
+                                .addSnapshotListener((doc, e) -> {
+                                    if (e == null && doc != null && doc.exists()) {
+                                        adminItem.setVisible(Boolean.TRUE.equals(doc.getBoolean("isAdmin")));
+                                    } else {
+                                        adminItem.setVisible(false);
+                                    }
+                                });
+                        } else {
+                            adminItem.setVisible(false);
+                        }
+                    }
+                }
+            });
         }
     }
     
