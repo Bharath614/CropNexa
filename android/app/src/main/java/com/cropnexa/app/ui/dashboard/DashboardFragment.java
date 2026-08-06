@@ -52,18 +52,17 @@ public class DashboardFragment extends Fragment {
         FirebaseManager.getInstance().getDb()
             .collection("users")
             .document(userId)
-            .get()
-            .addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
+            .addSnapshotListener((documentSnapshot, error) -> {
+                if (error != null) {
+                    return;
+                }
+                if (documentSnapshot != null && documentSnapshot.exists()) {
                     try {
                         updateUI(view, documentSnapshot);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-            })
-            .addOnFailureListener(e -> {
-                // Keep static XML defaults
             });
     }
     

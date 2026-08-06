@@ -136,9 +136,11 @@ public class NotificationsFragment extends Fragment {
         FirebaseManager.getInstance().getDb()
             .collection("users")
             .document(auth.getCurrentUser().getUid())
-            .get()
-            .addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
+            .addSnapshotListener((documentSnapshot, error) -> {
+                if (error != null) {
+                    return;
+                }
+                if (documentSnapshot != null && documentSnapshot.exists()) {
                     List<Map<String, Object>> notifs = (List<Map<String, Object>>) documentSnapshot.get("notifications");
                     if (notifs != null) {
                         allNotifications.clear();

@@ -88,9 +88,11 @@ public class WeatherFragment extends Fragment {
         FirebaseManager.getInstance().getDb()
             .collection("users")
             .document(userId)
-            .get()
-            .addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
+            .addSnapshotListener((documentSnapshot, error) -> {
+                if (error != null) {
+                    return;
+                }
+                if (documentSnapshot != null && documentSnapshot.exists()) {
                     String village = documentSnapshot.getString("profile.village");
                     String state = documentSnapshot.getString("profile.state");
                     String gps = documentSnapshot.getString("profile.gpsLocation");

@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { evaluateSoilHealth } from '@/utils/soil-evaluation';
 import i18n from '@/i18n';
 import { onAuthStateChanged, signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { auth, db, isFirebaseConfigured } from '@/utils/firebase';
 import { signUpWithEmail, saveUserDataToFirestore, mapAuthCodeToMessage } from '@/utils/firebase-auth';
 const initialSoilReport = {
@@ -258,7 +258,8 @@ export const FarmProvider = ({ children }) => {
             completed: false,
             priority: 'High'
         });
-        setCalendar(newCalendar);
+        // We do not overwrite calendar here if it's synced from Firebase, this is a fallback for demo mode
+        setCalendar(prev => prev.length > 0 ? prev : newCalendar);
     };
     // Load state on mount
     useEffect(() => {
@@ -331,28 +332,43 @@ export const FarmProvider = ({ children }) => {
     useEffect(() => {
         if (!isFirebaseConfigured)
             return;
-        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            
+        let unsubscribeSnapshot = null;
+
+        const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
                 try {
                     const userDocRef = doc(db, 'users', firebaseUser.uid);
-                    const snap = await getDoc(userDocRef);
-                    if (snap.exists()) {
-                        const data = snap.data();
-                        if (data.profile)
-                            setProfile(data.profile);
-                        if (data.soilReport)
-                            setSoilReport(data.soilReport);
-                        if (data.notifications)
-                            setNotifications(data.notifications);
-                        setIsAuthenticated(true);
-                    }
+                    
+                    // Setup real-time listener for this user document
+                    unsubscribeSnapshot = onSnapshot(userDocRef, (snap) => {
+                        if (snap.exists()) {
+                            const data = snap.data();
+                            if (data.profile) setProfile(data.profile);
+                            if (data.soilReport) setSoilReport(data.soilReport);
+                            if (data.notifications) setNotifications(data.notifications);
+                            if (data.calendar) setCalendar(data.calendar);
+                            if (data.weather) setWeather(data.weather);
+                            setIsAuthenticated(true);
+                        }
+                    }, (err) => {
+                        console.warn('Firestore snapshot listener error:', err);
+                    });
                 }
                 catch (err) {
                     console.warn('Firebase user state sync notice:', err);
                 }
+            } else {
+                if (unsubscribeSnapshot) {
+                    unsubscribeSnapshot();
+                    unsubscribeSnapshot = null;
+                }
             }
         });
-        return () => unsubscribe();
+        return () => {
+            unsubscribeAuth();
+            if (unsubscribeSnapshot) unsubscribeSnapshot();
+        };
     }, []);
     // Save to localStorage & Cloud Firestore
     useEffect(() => {
@@ -379,6 +395,20 @@ export const FarmProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('cropnexa_admin_activities', JSON.stringify(adminActivities));
     }, [adminActivities]);
+    
+    // Sync Calendar to Firestore
+    useEffect(() => {
+        if (currentUser?.id && isFirebaseConfigured && calendar.length > 0) {
+            saveUserDataToFirestore(currentUser.id, { calendar });
+        }
+    }, [calendar, currentUser?.id]);
+    
+    // Sync Weather to Firestore
+    useEffect(() => {
+        if (currentUser?.id && isFirebaseConfigured && weather) {
+            saveUserDataToFirestore(currentUser.id, { weather });
+        }
+    }, [weather, currentUser?.id]);
     // Auth Methods with strict security guards
     const loginUser = async (identifier, passwordInput, remember) => {
         const cleanId = identifier.trim().toLowerCase();
@@ -423,15 +453,19 @@ export const FarmProvider = ({ children }) => {
                     email: cleanId,
                 };
                 let userSoil = initialSoilReport;
+                let userNotifications = initialNotifications;
+                let userCalendar = [];
+                let userWeather = initialWeather;
                 if (snap && snap.exists()) {
                     const data = snap.data();
-                    if (data.profile)
-                        userProfile = data.profile;
-                    if (data.soilReport)
-                        userSoil = data.soilReport;
-                    if (data.notifications)
-                        setNotifications(data.notifications);
+                    if (data.profile) userProfile = data.profile;
+                    if (data.soilReport) userSoil = data.soilReport;
+                    if (data.notifications) userNotifications = data.notifications;
+                    if (data.calendar) userCalendar = data.calendar;
+                    if (data.weather) userWeather = data.weather;
                 }
+                setNotifications(userNotifications);
+                setCalendar(userCalendar.length > 0 ? userCalendar : []);
                 const adminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@cropnexa.in').toLowerCase();
                 const authenticatedUser = {
                     id: uid,
@@ -474,6 +508,8 @@ export const FarmProvider = ({ children }) => {
                     await saveUserDataToFirestore(uid, {
                         profile: userProfile,
                         soilReport: userSoil,
+                        calendar: userCalendar.length > 0 ? userCalendar : calendar, // Fallback to generated if empty
+                        weather: userWeather,
                         isEmailVerified: true,
                         accountStatus: 'Active',
                         isAdmin: cleanId === adminEmail,

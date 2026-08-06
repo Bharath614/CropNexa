@@ -165,9 +165,11 @@ public class CalendarFragment extends Fragment {
         FirebaseManager.getInstance().getDb()
             .collection("users")
             .document(userId)
-            .get()
-            .addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
+            .addSnapshotListener((documentSnapshot, error) -> {
+                if (error != null) {
+                    return;
+                }
+                if (documentSnapshot != null && documentSnapshot.exists()) {
                     List<Map<String, Object>> cal = (List<Map<String, Object>>) documentSnapshot.get("calendar");
                     if (cal != null) {
                         customTasks.clear();

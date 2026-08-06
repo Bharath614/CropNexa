@@ -271,9 +271,11 @@ public class SoilFragment extends Fragment {
         FirebaseManager.getInstance().getDb()
             .collection("users")
             .document(currentUserId)
-            .get()
-            .addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
+            .addSnapshotListener((documentSnapshot, error) -> {
+                if (error != null) {
+                    return;
+                }
+                if (documentSnapshot != null && documentSnapshot.exists()) {
                     updateUI(documentSnapshot);
                 }
             });
