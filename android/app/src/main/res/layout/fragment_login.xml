@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f172a"
+    android:background="@color/colorSurface"
     android:padding="24dp">
 
     <ImageView
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Welcome to CropNexa"
-        android:textColor="#f8fafc"
+        android:textColor="@color/colorTextPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:textColor="#f8fafc" />
+            android:textColor="@color/colorTextPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="#f8fafc" />
+            android:textColor="@color/colorTextPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Forgot Password?"
-        android:textColor="#94a3b8"
+        android:textColor="@color/colorTextMuted"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

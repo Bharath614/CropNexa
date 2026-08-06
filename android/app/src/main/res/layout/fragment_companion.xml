@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f172a">
+    android:background="@color/colorSurface">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0f172a"
+        android:background="@color/colorSurface"
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Companion Planner"
-            app:titleTextColor="#f8fafc" />
+            app:titleTextColor="@color/colorTextPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="FARM PARAMETERS"
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp" />
@@ -74,7 +74,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Target Crop"
-                                android:textColor="#cbd5e1"
+                                android:textColor="@color/colorTextSecondary"
                                 android:textSize="12sp" />
                             <Spinner
                                 android:id="@+id/spinCrop"
@@ -94,7 +94,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Growth Stage"
-                                android:textColor="#cbd5e1"
+                                android:textColor="@color/colorTextSecondary"
                                 android:textSize="12sp" />
                             <Spinner
                                 android:id="@+id/spinStage"
@@ -122,7 +122,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mode"
-                                android:textColor="#cbd5e1"
+                                android:textColor="@color/colorTextSecondary"
                                 android:textSize="12sp" />
                             <Spinner
                                 android:id="@+id/spinMode"
@@ -142,7 +142,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Land (Ha)"
-                                android:textColor="#cbd5e1"
+                                android:textColor="@color/colorTextSecondary"
                                 android:textSize="12sp" />
                             <EditText
                                 android:id="@+id/etLandArea"
@@ -195,7 +195,7 @@
                     android:layout_marginStart="4dp"
                     android:backgroundTint="#1e293b"
                     android:text="Nutrients"
-                    android:textColor="#94a3b8"
+                    android:textColor="@color/colorTextMuted"
                     app:cornerRadius="12dp" />
             </LinearLayout>
 

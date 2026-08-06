@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f172a">
+    android:background="@color/colorSurface">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0f172a"
+        android:background="@color/colorSurface"
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="AI Insights"
-            app:titleTextColor="#f8fafc"
+            app:titleTextColor="@color/colorTextPrimary"
             app:navigationIcon="?attr/homeAsUpIndicator" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#0f172a"
+                app:cardBackgroundColor="@color/colorSurface"
                 app:cardCornerRadius="16dp"
                 app:strokeColor="#064e3b"
                 app:strokeWidth="1dp">
@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="YIELD PREDICTION"
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp"
                         android:textStyle="bold" />
                     <TextView
@@ -60,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3.8 t/ha"
-                        android:textColor="#f8fafc"
+                        android:textColor="@color/colorTextPrimary"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                     <TextView
@@ -68,7 +68,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Total harvest projection: 190.0 tonnes"
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#0f172a"
+                app:cardBackgroundColor="@color/colorSurface"
                 app:cardCornerRadius="16dp"
                 app:strokeColor="#064e3b"
                 app:strokeWidth="1dp">
@@ -91,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="EXPECTED GROSS REVENUE"
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp"
                         android:textStyle="bold" />
                     <TextView
@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Organic premiums: Disabled"
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#0f172a"
+                app:cardBackgroundColor="@color/colorSurface"
                 app:cardCornerRadius="16dp"
                 app:strokeColor="#064e3b"
                 app:strokeWidth="1dp">
@@ -130,7 +130,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="COMPANION IMPACT RATING"
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp"
                         android:textStyle="bold" />
                     <TextView
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Optimal ecological stability rating"
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -155,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="WATER RECOMMENDATION (kL)"
-                android:textColor="#94a3b8"
+                android:textColor="@color/colorTextMuted"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
@@ -170,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rain Yield represents natural precipitation capture equivalent based on rain forecasts. Gap must be supplied via irrigation."
-                android:textColor="#64748b"
+                android:textColor="@color/colorTextMuted"
                 android:textSize="9sp"
                 android:layout_marginBottom="16dp"/>
 
@@ -179,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BIOLOGICAL RISK ASSESSMENT"
-                android:textColor="#94a3b8"
+                android:textColor="@color/colorTextMuted"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
@@ -209,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pest Risk"
-                        android:textColor="#f8fafc"
+                        android:textColor="@color/colorTextPrimary"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -231,7 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Disease Risk"
-                        android:textColor="#f8fafc"
+                        android:textColor="@color/colorTextPrimary"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -240,14 +240,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#020617"
+                android:background="@color/colorBackground"
                 android:padding="12dp"
                 android:layout_marginBottom="16dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="WEATHER IMPACT"
-                    android:textColor="#cbd5e1"
+                    android:textColor="@color/colorTextSecondary"
                     android:textSize="9sp"
                     android:textStyle="bold" />
                 <TextView
@@ -255,7 +255,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Elevated humidity levels combined with temperature spikes stimulate pest propagation cycles. Keep companion traps in place."
-                    android:textColor="#64748b"
+                    android:textColor="@color/colorTextMuted"
                     android:textSize="10sp"
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
@@ -278,14 +278,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NUTRIENT RECOMMENDATION"
-                        android:textColor="#e2e8f0"
+                        android:textColor="@color/colorTextPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Based on soil chemistry profiles, a Nitrogen deficit is expected in 14 days unless organic topdressing is applied."
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp"/>

@@ -8,11 +8,11 @@
     <color name="colorBorder">#E2E8F0</color>
     <color name="colorTextPrimary">#0F172A</color>
     <color name="colorTextSecondary">#475569</color>
-    <color name="colorTextMuted">#94A3B8</color>
+    <color name="colorTextMuted">#64748B</color>
     <color name="colorPrimary">#059669</color>
     <color name="colorPrimaryDark">#047857</color>
     <color name="colorAccent">#10B981</color>
-    <color name="colorInputBackground">#F8FAFC</color>
+    <color name="colorInputBackground">#F1F5F9</color>
     <color name="colorInputBorder">#CBD5E1</color>
     <color name="colorToolbar">#FFFFFF</color>
     <color name="colorToolbarText">#0F172A</color>
@@ -22,4 +22,6 @@
     <color name="colorAmber">#D97706</color>
     <color name="colorRose">#E11D48</color>
     <color name="colorIndigo">#4F46E5</color>
+    <!-- Legacy names for compat -->
+    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>

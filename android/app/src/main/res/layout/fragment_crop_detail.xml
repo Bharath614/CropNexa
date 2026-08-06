@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f172a">
+    android:background="@color/colorSurface">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0f172a"
+        android:background="@color/colorSurface"
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Crop Intelligence"
-            app:titleTextColor="#f8fafc"
+            app:titleTextColor="@color/colorTextPrimary"
             app:navigationIcon="?attr/homeAsUpIndicator" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Daylength: Long Day • Light: FULL"
-                        android:textColor="#cbd5e1"
+                        android:textColor="@color/colorTextSecondary"
                         android:textSize="12sp"
                         android:textStyle="italic" />
                 </LinearLayout>
@@ -110,7 +110,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="1. Legumes (Nitrogen fixation)\n2. Mustard (Pest deterrence)\n3. Coriander (Attracts beneficials)"
-                        android:textColor="#f8fafc"
+                        android:textColor="@color/colorTextPrimary"
                         android:textSize="12sp"
                         android:lineSpacingExtra="4dp" />
                 </LinearLayout>
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="1. Potatoes (Increases blight risk)\n2. Tomatoes (Shared pathogens)"
-                        android:textColor="#f8fafc"
+                        android:textColor="@color/colorTextPrimary"
                         android:textSize="12sp"
                         android:lineSpacingExtra="4dp" />
                 </LinearLayout>

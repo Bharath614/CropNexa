@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nitrogen"
-                    android:textColor="#f8fafc"
+                    android:textColor="@color/colorTextPrimary"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="N"
-                    android:textColor="#94a3b8"
+                    android:textColor="@color/colorTextMuted"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Ideal: 280-560 kg/ha"
-                android:textColor="#94a3b8"
+                android:textColor="@color/colorTextMuted"
                 android:textSize="10sp" />
 
             <TextView
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="300 kg/ha"
-                android:textColor="#f8fafc"
+                android:textColor="@color/colorTextPrimary"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:gravity="end" />

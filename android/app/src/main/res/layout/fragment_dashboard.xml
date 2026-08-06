@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f172a">
+    android:background="@color/colorSurface">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0f172a"
+        android:background="@color/colorSurface"
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Home"
-            app:titleTextColor="#f8fafc">
+            app:titleTextColor="@color/colorTextPrimary">
             
             <ImageView
                 android:id="@+id/ivLogoutDashboard"
@@ -136,7 +136,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SOIL SCORE"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
@@ -176,7 +176,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ACTIVE CROP"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
@@ -191,7 +191,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="50.0 Ha (50.0 Irrigated)"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -216,7 +216,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="WEATHER"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
@@ -256,7 +256,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SYSTEM MODE"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
@@ -297,7 +297,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="✨ AI Actionable Recommendations"
-                        android:textColor="#f8fafc"
+                        android:textColor="@color/colorTextPrimary"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />
@@ -323,7 +323,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Pair Tomato with Marigold &amp; Cowpea. Marigold exudates suppress root-knot nematodes while Cowpea fixes biological nitrogen in rhizosphere."
-                            android:textColor="#e2e8f0"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="12sp" />
                     </LinearLayout>
 
@@ -331,7 +331,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#0f172a"
+                        android:background="@color/colorSurface"
                         android:orientation="vertical"
                         android:padding="12dp">
                         
@@ -347,7 +347,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Apply 60% baseline dose now and reserve 40% split dose for flowering stage. Combine with Phosphate Solubilizing Bacteria (PSB) for maximum uptake."
-                            android:textColor="#e2e8f0"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -373,7 +373,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="⚠️ Smart Alerts (2)"
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />
@@ -415,7 +415,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="High humidity (\u003e85%) detected for 48 hours. Optimal conditions for Phytophthora infestans."
-                            android:textColor="#cbd5e1"
+                            android:textColor="@color/colorTextSecondary"
                             android:textSize="11sp" />
                     </LinearLayout>
 
@@ -455,7 +455,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Root zone moisture dropped below 30% capacity in block A. Stress imminent."
-                            android:textColor="#cbd5e1"
+                            android:textColor="@color/colorTextSecondary"
                             android:textSize="11sp" />
                     </LinearLayout>
                 </LinearLayout>

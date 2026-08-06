@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f172a">
+    android:background="@color/colorSurface">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0f172a"
+        android:background="@color/colorSurface"
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Notifications"
-            app:titleTextColor="#f8fafc"
+            app:titleTextColor="@color/colorTextPrimary"
             app:navigationIcon="?attr/homeAsUpIndicator" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -73,7 +73,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Push Notifications"
-                        android:textColor="#f8fafc"
+                        android:textColor="@color/colorTextPrimary"
                         android:checked="true" />
                     
                     <Button
@@ -99,7 +99,7 @@
             android:paddingEnd="16dp"
             android:hint="Search notifications..."
             android:textColorHint="#475569"
-            android:textColor="#f8fafc"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="14sp"
             android:layout_marginBottom="12dp"/>
 

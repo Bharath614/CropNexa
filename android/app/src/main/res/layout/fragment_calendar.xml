@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f172a">
+    android:background="@color/colorSurface">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0f172a"
+        android:background="@color/colorSurface"
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Farm Calendar"
-            app:titleTextColor="#f8fafc" />
+            app:titleTextColor="@color/colorTextPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -71,7 +71,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Phase-based crop task scheduler"
-                                android:textColor="#64748b"
+                                android:textColor="@color/colorTextMuted"
                                 android:textSize="12sp"
                                 android:layout_marginTop="2dp" />
                         </LinearLayout>
@@ -103,7 +103,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="TARGET CROP"
-                                android:textColor="#64748b"
+                                android:textColor="@color/colorTextMuted"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
                                 android:layout_marginBottom="4dp" />
@@ -124,7 +124,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="PLANTING DATE"
-                                android:textColor="#64748b"
+                                android:textColor="@color/colorTextMuted"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
                                 android:layout_marginBottom="4dp" />
@@ -134,7 +134,7 @@
                                 android:layout_height="40dp"
                                 android:backgroundTint="#020617"
                                 android:text="Jul 1, 2026"
-                                android:textColor="#94a3b8"
+                                android:textColor="@color/colorTextMuted"
                                 android:textSize="12sp"
                                 app:cornerRadius="8dp" />
                         </LinearLayout>
@@ -159,7 +159,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="HARVEST DATE"
-                                android:textColor="#64748b"
+                                android:textColor="@color/colorTextMuted"
                                 android:textSize="9sp"
                                 android:textStyle="bold" />
                             <TextView
@@ -184,7 +184,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="CROP DURATION"
-                                android:textColor="#64748b"
+                                android:textColor="@color/colorTextMuted"
                                 android:textSize="9sp"
                                 android:textStyle="bold" />
                             <TextView

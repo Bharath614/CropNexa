@@ -47,7 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mode of Practice: "
-                        android:textColor="#94a3b8"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvNutrientHeaderMode"
@@ -77,7 +77,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#1e293b"
+            android:background="@color/colorSurfaceVariant"
             android:layout_marginBottom="16dp" />
 
         <!-- NPK Protocol Summary -->
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="NPK Protocol Summary:"
-                android:textColor="#94a3b8"
+                android:textColor="@color/colorTextMuted"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
@@ -137,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="• FYM @ 10 t/ha + 75% recommended synthetic NPK"
-                    android:textColor="#94a3b8"
+                    android:textColor="@color/colorTextMuted"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -163,7 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="• Azotobacter / PSB bio-inoculants @ 2 kg/ha"
-                    android:textColor="#94a3b8"
+                    android:textColor="@color/colorTextMuted"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -196,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="• Foliar Zinc Sulphate (0.2%) + Humic Acid @ 3 kg/ha"
-                    android:textColor="#94a3b8"
+                    android:textColor="@color/colorTextMuted"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -222,7 +222,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="• Drip fertigation splits: 50% pre-blooming, 50% post fruit set"
-                    android:textColor="#94a3b8"
+                    android:textColor="@color/colorTextMuted"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>

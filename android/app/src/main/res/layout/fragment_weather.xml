@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f172a">
+    android:background="@color/colorSurface">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0f172a"
+        android:background="@color/colorSurface"
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Weather Intelligence"
-            app:titleTextColor="#f8fafc" />
+            app:titleTextColor="@color/colorTextPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="2"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="#0f172a"
+                    app:cardBackgroundColor="@color/colorSurface"
                     app:cardCornerRadius="16dp"
                     app:strokeColor="#064e3b"
                     app:strokeWidth="1dp">
@@ -60,7 +60,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ACTIVE WEATHER LOCATION"
-                            android:textColor="#64748b"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
@@ -69,7 +69,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Village: -"
-                            android:textColor="#e2e8f0"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                         <TextView
@@ -77,7 +77,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="- , -"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="12sp" />
                         
                         <LinearLayout
@@ -92,7 +92,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="GPS: -"
-                                android:textColor="#cbd5e1"
+                                android:textColor="@color/colorTextSecondary"
                                 android:textSize="10sp" />
                             <TextView
                                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SEASON"
-                            android:textColor="#64748b"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
@@ -133,7 +133,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Monsoon"
-                            android:textColor="#e2e8f0"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
                         <TextView
@@ -168,7 +168,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Weather Intelligence Analyzer"
-                        android:textColor="#f8fafc"
+                        android:textColor="@color/colorTextPrimary"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -197,7 +197,7 @@
                             android:layout_marginEnd="4dp"
                             android:backgroundTint="#0f172a"
                             android:text="Rain"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp" />
                         <Button
                             android:id="@+id/btnHumid"
@@ -207,7 +207,7 @@
                             android:layout_marginEnd="4dp"
                             android:backgroundTint="#0f172a"
                             android:text="Humid"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp" />
                         <Button
                             android:id="@+id/btnDew"
@@ -216,7 +216,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#0f172a"
                             android:text="Dew"
-                            android:textColor="#94a3b8"
+                            android:textColor="@color/colorTextMuted"
                             android:textSize="10sp" />
                     </LinearLayout>
 
@@ -247,7 +247,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="WIND PATTERN METRICS"
-                        android:textColor="#64748b"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp"
                         android:textStyle="bold" />
                     <LinearLayout
@@ -266,13 +266,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="SPEED"
-                                android:textColor="#94a3b8"
+                                android:textColor="@color/colorTextMuted"
                                 android:textSize="10sp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="14 km/h"
-                                android:textColor="#e2e8f0"
+                                android:textColor="@color/colorTextPrimary"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -286,7 +286,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="DIRECTION"
-                                android:textColor="#94a3b8"
+                                android:textColor="@color/colorTextMuted"
                                 android:textSize="10sp" />
                             <TextView
                                 android:layout_width="wrap_content"
@@ -302,10 +302,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:background="#0f172a"
+                        android:background="@color/colorSurface"
                         android:padding="12dp"
                         android:text="During monsoon, south-westerly winds push humid maritime air inland. Maintain border crops as windbreakers."
-                        android:textColor="#cbd5e1"
+                        android:textColor="@color/colorTextSecondary"
                         android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -328,7 +328,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NEXT 3-DAY WEATHER FORECAST"
-                        android:textColor="#64748b"
+                        android:textColor="@color/colorTextMuted"
                         android:textSize="10sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp" />

@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Mechanism goes here"
-                android:textColor="#cbd5e1"
+                android:textColor="@color/colorTextSecondary"
                 android:textSize="12sp" />
 
             <TextView
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="Source: Unknown"
-                android:textColor="#64748b"
+                android:textColor="@color/colorTextMuted"
                 android:textSize="10sp"
                 android:textStyle="italic" />
         </LinearLayout>
