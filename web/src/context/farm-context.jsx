@@ -93,9 +93,9 @@ const defaultDemoUser = {
 };
 const defaultAdminUser = {
     id: 'usr-admin-1',
-    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@cropnexa.in',
+    email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'cropnexa1@gmail.com',
     mobile: '0000000000',
-    passwordHash: 'admin123',
+    passwordHash: 'Bunny#161104',
     isEmailVerified: true,
     isMobileVerified: true,
     isActive: true,
@@ -160,7 +160,7 @@ export const FarmProvider = ({ children }) => {
     const [weather, setWeather] = useState(initialWeather);
     const [currentLanguage, setCurrentLanguage] = useState('en');
     const [theme, setThemeState] = useState('dark');
-    const [appSize, setAppSizeState] = useState('mobile');
+    const [appSize, setAppSizeState] = useState('auto');
     const setTheme = (newTheme) => {
         setThemeState(newTheme);
         if (typeof window !== 'undefined') {
@@ -313,7 +313,7 @@ export const FarmProvider = ({ children }) => {
                 if (savedTheme === 'light' || savedTheme === 'dark') {
                     setTheme(savedTheme);
                 }
-                if (savedAppSize === 'mobile' || savedAppSize === 'full' || savedAppSize === 'standard' || savedAppSize === 'compact') {
+                if (savedAppSize === 'auto' || savedAppSize === 'mobile' || savedAppSize === 'full' || savedAppSize === 'standard' || savedAppSize === 'compact') {
                     setAppSizeState(savedAppSize);
                 }
                 const savedActivities = localStorage.getItem('cropnexa_admin_activities');
@@ -425,6 +425,7 @@ export const FarmProvider = ({ children }) => {
                     if (data.soilReport)
                         userSoil = data.soilReport;
                 }
+                const adminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@cropnexa.in').toLowerCase();
                 const authenticatedUser = {
                     id: uid,
                     email: cleanId,
@@ -440,6 +441,7 @@ export const FarmProvider = ({ children }) => {
                     registeredAt: new Date().toLocaleDateString(),
                     isFirstLogin: false,
                     smsNotificationsEnabled: true,
+                    isAdmin: cleanId === adminEmail,
                     profile: userProfile,
                     soilReport: userSoil
                 };
@@ -450,6 +452,33 @@ export const FarmProvider = ({ children }) => {
                 i18n.changeLanguage(userProfile.preferredLanguage || 'en');
                 setIsAuthenticated(true);
                 setAuthScreen('app');
+                // Add/update user in registeredUsers so they appear in Admin Dashboard
+                setRegisteredUsers(prev => {
+                    const exists = prev.some(u => u.id === uid || u.email.toLowerCase() === cleanId);
+                    if (exists) {
+                        return prev.map(u => (u.id === uid || u.email.toLowerCase() === cleanId) ? { ...u, ...authenticatedUser } : u);
+                    }
+                    return [...prev, authenticatedUser];
+                });
+                // Dispatch login event to Admin Activity log
+                dispatchAdminEvent('Login', 'User Login', `User signed in via Firebase Authentication.`, authenticatedUser, 'success');
+                // Save user data to Firestore (including isAdmin flag for admin account)
+                try {
+                    await saveUserDataToFirestore(uid, {
+                        profile: userProfile,
+                        soilReport: userSoil,
+                        isEmailVerified: true,
+                        accountStatus: 'Active',
+                        isAdmin: cleanId === adminEmail,
+                        email: cleanId,
+                        mobile: userProfile.mobileNumber || '',
+                        registeredAt: authenticatedUser.registeredAt,
+                        lastLoginAt: new Date().toISOString(),
+                        smsNotificationsEnabled: true,
+                    });
+                } catch (firestoreErr) {
+                    console.warn('Firestore user data save notice:', firestoreErr);
+                }
                 if (remember) {
                     localStorage.setItem('cropnexa_session', JSON.stringify({ isAuthenticated: true, user: authenticatedUser }));
                 }
@@ -459,22 +488,43 @@ export const FarmProvider = ({ children }) => {
             catch (err) {
                 const firebaseError = err;
                 console.warn('Firebase Auth login notice:', firebaseError.code, firebaseError.message);
+                // For ANY Firebase auth failure, always try local credentials first
+                // This handles: account not yet created in Firebase, wrong Firebase password, network issues
+                const localUser = registeredUsers.find(u => u.email.toLowerCase() === cleanId);
+                if (localUser && localUser.passwordHash === passwordInput) {
+                    setCurrentUser(localUser);
+                    setProfile(localUser.profile);
+                    setSoilReport(localUser.soilReport || initialSoilReport);
+                    setIsAuthenticated(true);
+                    setAuthScreen('app');
+                    dispatchAdminEvent('Login', 'User Login', 'User signed in via local credentials (offline mode).', localUser, 'success');
+                    showToast('Login Successful!', `Welcome back, ${localUser.profile.farmerName}!`, 'success');
+                    return { success: true };
+                }
+                // Special admin bypass: if email matches admin email and password matches
+                const configuredAdminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'cropnexa1@gmail.com').toLowerCase();
+                if (cleanId === configuredAdminEmail && passwordInput === defaultAdminUser.passwordHash) {
+                    const adminUser = { ...defaultAdminUser, email: cleanId };
+                    setCurrentUser(adminUser);
+                    setProfile(adminUser.profile);
+                    setSoilReport(adminUser.soilReport);
+                    setIsAuthenticated(true);
+                    setAuthScreen('app');
+                    // Ensure admin appears in registeredUsers (check by id OR email to prevent duplicates)
+                    setRegisteredUsers(prev => {
+                        const exists = prev.some(u => u.email.toLowerCase() === cleanId || u.id === adminUser.id);
+                        if (exists) return prev.map(u => (u.email.toLowerCase() === cleanId || u.id === adminUser.id) ? { ...u, ...adminUser } : u);
+                        return [...prev, adminUser];
+                    });
+                    dispatchAdminEvent('Login', 'Admin Login', 'System Administrator signed in successfully.', adminUser, 'success');
+                    showToast('Admin Login Successful!', 'Welcome, System Administrator!', 'success');
+                    return { success: true };
+                }
                 if (firebaseError.code === 'auth/user-not-found') {
-                    return { success: false, error: 'No account found with this Email address. Please click New Farmer Registration first.' };
+                    return { success: false, error: 'No account found with this Email. Please register first or check your email address.' };
                 }
                 if (firebaseError.code === 'auth/wrong-password' || firebaseError.code === 'auth/invalid-credential') {
-                    // Check local registered user fallback first if password was updated locally
-                    const localUser = registeredUsers.find(u => u.email.toLowerCase() === cleanId);
-                    if (localUser && localUser.passwordHash === passwordInput) {
-                        setCurrentUser(localUser);
-                        setProfile(localUser.profile);
-                        setSoilReport(localUser.soilReport);
-                        setIsAuthenticated(true);
-                        setAuthScreen('app');
-                        showToast('Login Successful!', `Welcome back, ${localUser.profile.farmerName}!`, 'success');
-                        return { success: true };
-                    }
-                    return { success: false, error: 'Incorrect password for this account. Please try again or click Forgot Password.' };
+                    return { success: false, error: 'Incorrect password. Please try again or click Forgot Password.' };
                 }
                 return { success: false, error: mapAuthCodeToMessage(firebaseError.code || '') };
             }
@@ -494,6 +544,44 @@ export const FarmProvider = ({ children }) => {
         setIsAuthenticated(true);
         setAuthScreen('app');
         return { success: true };
+    };
+
+    const loginWithGoogle = async () => {
+        try {
+            const { signInWithGoogle } = await import('@/utils/firebase-auth');
+            const res = await signInWithGoogle();
+            if (res) {
+                const authenticatedUser = {
+                    id: res.uid,
+                    email: res.profile.email,
+                    mobile: res.profile.mobileNumber || '',
+                    passwordHash: 'google-oauth',
+                    isEmailVerified: true,
+                    isMobileVerified: true,
+                    isActive: true,
+                    accountStatus: 'Active',
+                    failedLoginAttempts: 0,
+                    isLocked: false,
+                    lockUntil: null,
+                    registeredAt: new Date().toLocaleDateString(),
+                    isFirstLogin: false,
+                    smsNotificationsEnabled: true,
+                    profile: res.profile,
+                    soilReport: initialSoilReport
+                };
+                setCurrentUser(authenticatedUser);
+                setProfile(res.profile);
+                setIsAuthenticated(true);
+                setAuthScreen('app');
+                showToast('Google Sign-In Successful!', `Welcome ${res.profile.farmerName}!`, 'success');
+                return { success: true };
+            }
+            return { success: false, error: 'Google sign in cancelled.' };
+        } catch (err) {
+            console.warn('Google login error:', err);
+            const msg = mapAuthCodeToMessage(err?.code || '') || err?.message || 'Google Sign-In failed.';
+            return { success: false, error: msg };
+        }
     };
     const registerUser = async (newProfile, password) => {
         const newUser = {
@@ -786,6 +874,7 @@ Empowering Smarter Farming 🌱`, 'verify_email');
             dispatchOutboundNotification,
             setAuthScreen,
             loginUser,
+            loginWithGoogle,
             registerUser,
             verifyUserEmail,
             verifyUserMobile,

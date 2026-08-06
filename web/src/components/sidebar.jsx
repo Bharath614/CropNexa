@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useFarm } from '@/context/farm-context';
 import { useTranslation } from 'react-i18next';
 import { SUPPORTED_LANGUAGES } from '@/utils/i18n';
-import { LayoutDashboard, CloudSun, Sprout, Sparkles, Activity, ClipboardList, BrainCircuit, FileSpreadsheet, Calendar, Settings, Menu, X, RefreshCw, Locate, LogOut, Globe, Bell, ShieldCheck, Sun, Moon } from 'lucide-react';
+import { LayoutDashboard, CloudSun, Sprout, Sparkles, Activity, ClipboardList, BrainCircuit, FileSpreadsheet, Calendar, Settings, Menu, X, Locate, LogOut, Globe, Bell, ShieldCheck, Sun, Moon } from 'lucide-react';
 export const Sidebar = () => {
     const { activeTab, setActiveTab, profile, resetAllData, logoutUser, currentLanguage, setLanguage, currentUser, theme, toggleTheme } = useFarm();
     const [isOpen, setIsOpen] = useState(false);
@@ -119,15 +119,6 @@ export const Sidebar = () => {
           <button onClick={logoutUser} className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-bold bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border border-rose-900/50 transition-all cursor-pointer">
             <LogOut className="h-3.5 w-3.5"/>
             <span>{t('logout')}</span>
-          </button>
-
-          <button onClick={() => {
-            if (confirm('Are you sure you want to reset all farm configuration and history logs?')) {
-                resetAllData();
-            }
-        }} className="w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-xl text-[10px] font-semibold bg-slate-950 text-slate-500 hover:text-slate-300 border border-slate-800 transition-colors cursor-pointer">
-            <RefreshCw className="h-3 w-3"/>
-            Reset Farm Database
           </button>
         </div>
       </div>

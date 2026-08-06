@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 import React, { useState } from 'react';
-import { Mail, Lock, Eye, EyeOff, LogIn, UserPlus, Globe, CheckCircle2, X, ShieldAlert, KeyRound, HelpCircle, Send, Sparkles, Sprout, ShieldCheck, Activity } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, LogIn, UserPlus, Globe, CheckCircle2, X, ShieldAlert, KeyRound, HelpCircle, Send, Sprout, ShieldCheck, Activity } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { SUPPORTED_LANGUAGES } from '@/utils/i18n';
 import { sendPasswordReset } from '@/utils/firebase-auth';
@@ -102,11 +102,6 @@ Empowering Smarter Farming 🌱`, 'reset_password');
 
                 {/* Main Content & Feature Value Prop */}
                 <div className="my-10 space-y-6 max-w-xl">
-                    <div className="inline-flex items-center gap-2 bg-emerald-950/80 border border-emerald-800/60 px-4 py-1.5 rounded-full text-xs font-bold text-emerald-300 shadow-inner">
-                        <Sparkles className="h-4 w-4 text-emerald-400"/>
-                        <span>AI-Powered Companion Planting Platform</span>
-                    </div>
-
                     <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight tracking-tight">
                         Empowering Smarter & Sustainable Farming.
                     </h2>
