@@ -22,6 +22,4 @@
     <color name="colorAmber">#D97706</color>
     <color name="colorRose">#E11D48</color>
     <color name="colorIndigo">#4F46E5</color>
-    <!-- Legacy names for compat -->
-    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>
